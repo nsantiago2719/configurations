@@ -1,0 +1,53 @@
+extends javascript
+snippet t "HTML tag without class"
+<${1:div}>
+$0
+</${1/(\w+).*/$1/}>
+endsnippet
+
+snippet d "Div tag snippet" b
+<div>$0</div>
+endsnippet
+
+snippet d. "Div tag with class" b
+<div class="$1">$0</div>
+endsnippet
+
+snippet d# "Di with id" b
+<div id="$1">$0</div>
+endsnippet
+
+snippet t. "HTML tag with class"
+<${1:div} class="${2:default}" >
+$0
+</$1>
+endsnippet
+
+snippet t# "HTML tag with id"
+<${1:div} id="${2:default}" >
+$0
+</$1>
+endsnippet
+
+snippet t/ "HTML tag without ending tag" b
+<${1:meta} />
+endsnippet
+
+snippet c "HTML Comment" b
+<!-- $1 -->
+endsnippet
+
+snippet doctype "Doctype HTML5" b
+<!DOCTYPE HTML>
+endsnippet
+
+snippet h "HTML template" b
+<html>
+  <head>
+  </head>
+  <body>
+  </body>
+  <footer>
+  </footer>
+</html>
+endsnippet
