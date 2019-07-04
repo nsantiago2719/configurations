@@ -16,12 +16,37 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'SirVer/ultisnips'
 Plugin 'tpope/vim-fugitive'
 Plugin 'altercation/vim-colors-solarized'
-Bundle "lepture/vim-jinja"
-Plugin 'darthmall/vim-vue'
+Plugin 'itchyny/lightline.vim'
+Plugin 'fatih/vim-go'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'janko-m/vim-test'
+Plugin 'hashivim/vim-terraform'
+Plugin 'wakatime/vim-wakatime'
 
 call vundle#end()
 filetype plugin indent on
 
+" Vim terraform config
+let g:terraform_align=1
+
+" Vim lightline config
+
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ 'active': {
+      \   'left': [ ['mode', 'paste'] ,
+      \             ['gitbranch', 'readonly', 'filename', 'modified'] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
+
+" Vim teset configurations
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
 
 " CtrlP
 " set runtimepath^=~/.vim/bundle/ctrlp.vim
@@ -120,7 +145,7 @@ set showbreak=↪\
 au InsertEnter * :set listchars-=trail:•
 au InsertLeave * :set listchars+=trail:•
 
-au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
+" au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
 
 function! RenameFile()
   let old_name = expand('%')
@@ -132,4 +157,4 @@ function! RenameFile()
   endif
 endfunction
 map <leader>j :call RenameFile()<cr>
-
+set noshowmode

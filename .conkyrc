@@ -3,7 +3,7 @@ conky.config = {
     background = true,
     border_width = 0,
     cpu_avg_samples = 2,
-    default_color = 'white',
+    default_color = white,
     default_outline_color = 'white',
     default_shade_color = 'white',
     draw_borders = false,
@@ -25,10 +25,10 @@ conky.config = {
     own_window = true,
     own_window_class = 'Conky',
     own_window_type = 'override',
-    own_window_colour = '#0f0f0f',
     own_window_hints = 'undecorated','below','sticky','skip_taskbar','skip_pager',
+    own_window_transparent = no,
     own_window_argb_visual = true,
-    own_window_argb_value = 150,
+    own_window_argb_value = 0,
     stippled_borders = 0,
     update_interval = 0.5,
     uppercase = false,
@@ -56,7 +56,7 @@ $hr
 ${color grey}
 Lan Network:
 Down:$color ${downspeed enp4s0} : Up:$color ${upspeed enp4s0} ${color grey}
-${downspeedgraph eth0 40 }
+${downspeedgraph enp4s0 40 }
 Wireless Network:
 Down:$color ${downspeed wlp5s0} : Up:$color ${upspeed wlp5s0} ${color grey}
 ${downspeedgraph wlp5s0 40 }

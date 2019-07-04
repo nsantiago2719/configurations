@@ -15,9 +15,6 @@ set $mod4 Mod4
 
 for_window [class="^.*"] border pixel 0
 
-gaps inner 10
-smart_gaps on
-
 # exec --no-startup-id xrandr --newmode '1368x768' 85.00 1368 1440 1576 1784 768 771 781 798 -hsync +vsync
 # exec --no-startup-id xrandr --addmode eDP-1 1368x768
 # exec --no-startup-id xrandr --output eDP-1 --mode 1368x768
@@ -196,7 +193,7 @@ bar {
 #
 # Runs mock_menu
 bindsym $mod4+d exec morc_menu
-bindsym $mod4+r exec "rofi -show drun"
+bindsym $mod4+r exec "rofi -show run"
 bindsym $mod4+l exec "betterlockscreen -l blur -t 'Keep calm and use Arch'"
 
 bindsym $mod+Tab workspace next
@@ -206,7 +203,7 @@ bindsym $mod+Shift+Tab workspace previous
 #
 # System Fn controls
 
-# Adjusts volume
+# Adjusts volume 
 # bindsym XF96AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
 # bindsym XF96AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF96AudioMute exec --no-startup-id pactl set-sink-volume 0 toggle
@@ -217,7 +214,7 @@ bindsym XF96MonBrightnessUp exec --no-startup-id pactl xbacklight -inc 10
 
 ## Volume Control
 # Path to volume control, without trailing slash
-set $volumepath ~/i3-plugins/i3-volume
+set $volumepath ~/i3-volume
 
 # Command for the status line (used with -t, requires -u)
 #   ie: i3blocks, i3status
