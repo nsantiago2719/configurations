@@ -1,0 +1,15 @@
+#!/bin/env ruby
+#
+# Author: Norman Santiago
+# Returns the list of running docker container IP address
+
+docker_names = `docker ps --format {{.Names}}`.split("\n")
+
+puts "Container Name                IP Address          Container ID"
+
+docker_names.each do |docker_name|
+  space = " "*(30 - docker_name.length)
+  ip_address = `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' #{docker_name}`
+  container_id = `docker inspect #{docker_name} --format {{.ID}}`.chomp
+  puts "#{docker_name}#{space}#{ip_address.chomp}#{" "*10}#{container_id[0..11]}"
+end

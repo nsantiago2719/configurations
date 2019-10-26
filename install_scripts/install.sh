@@ -2,7 +2,7 @@
 
 #
 # Author: Norman Santiago
-# This installs rvm with ruby version 2.6.0 and rails version 5.2.2. 
+# This installs rvm with ruby version 2.6.0 and the latest rails.
 # Depending on the operating system and distro it will install gnupg, curl
 # and git packages.
 #
@@ -22,7 +22,8 @@ function install_rvm (){
     echo "[[ -s '$HOME/.rvm/scripts/rvm' ]] && source '$HOME/.rvm/scripts/rvm'" >> $HOME/.bashrc
     rvm requirements
     # Installing rails
-    gem install rails -v 5.2.2 --no-rdoc --no-ri
+    # make sure to install the latest rails
+    gem install rails --no-rdoc --no-ri
   fi
 }
 

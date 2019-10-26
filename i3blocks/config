@@ -1,0 +1,99 @@
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+#
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+# Change $SCRIPT_DIR to the location of your scripts!
+command=$SCRIPT_DIR/$BLOCK_NAME
+separator_block_width=15
+markup=none
+
+# [gcalcli]
+# command=./gcalcli/calc
+# label=Next Event:  
+# interval=60
+# 
+[playerctl]
+command=./custom/playerctl
+label=  
+instance=spotify
+interval=1
+
+# [mediaplayer]
+# command=./mediaplayer/mediaplayer
+# instance=spotify
+# interval=1
+# signal=10
+
+[calendar]
+command=./calendar/calendar
+interval=10
+LABEL=  
+DATEFMT=+%H:%M:%S
+
+[network]
+command=./custom/network
+label=
+instance=wlp7s0
+interval=5
+separator=false
+separator_block_width=5
+
+[bandwidth]
+command=./custom/bandwidth
+label=
+instance=wlp7s0;in
+interval=1
+separator=false
+separator_block_width=5
+
+[bandwidth]
+command=./custom/bandwidth
+label=  
+instance=wlp7s0;out
+interval=1
+
+[network]
+command=./custom/network
+label= LAN: 
+instance=enp8s0
+interval=5
+
+[volume-pulseaudio]
+command=./volume-pulseaudio/volume-pulseaudio
+interval=persist
+SUBSCRIBE=1
+SHORT_FORMAT=Volume: ${VOL}% ${SYMB}
+LONG_FORMAT=Volume: ${VOL}% ${SYMB}
+
+# Battery indicator
+#
+# The battery instance defaults to 0.
+[battery]
+label=BAT
+command=./battery/battery
+label=⚡ 
+interval=10
+bat_number=0
+

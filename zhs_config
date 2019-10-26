@@ -52,7 +52,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git rails)
+plugins=(git docker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -75,9 +75,7 @@ export LANG=en_US.UTF-8
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa.pub"
-export PATH=~/.local/bin:/usr/bin/terraform:$PATH
 
-export PATH="$PATH:$HOME/.rvm/bin:$HOME/.node_modules/bin"
 export LC_MESSAGES="C"
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -88,15 +86,11 @@ export LC_MESSAGES="C"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source /home/`whoami`/.rvm/scripts/rvm
-
 # Copy .z.sh to $HOME
 . /home/`whoami`/.z.sh
 
 alias zshconfig="vim ~/.zshrc"
 alias zsh_reload="source ~/.zshrc"
-
-alias srsc="spring rails c"
 
 alias pu="sudo pacman -Syu"
 alias pi="sudo pacman -S"
@@ -104,62 +98,42 @@ alias pr="sudo pacman -Rns"
 
 # Requires vim installed
 alias v="vim"
-# Requires nmap
-alias nmap="sudo nmap"
 
-alias sqlmap="python2 /opt/sqlmap/sqlmap.py"
-
-alias nikto="/opt/nikto/program/nikto.pl"
-
-# Alias for ranger
-alias r="ranger"
 export GPG_TTY=$(tty)
 export RANGER_LOAD_DEFAULT_RC=false
 alias ls="ls -l"
 
-# Requires ghidra from NSA
-alias ghidra='/opt/ghidra/ghidraRun'
+export PATH="/home/l4z/.local/bin:$PATH"
+export GOPATH=$HOME/Desktop/stuff/terraform
+export PATH="$GOPATH/bin:$PATH"
 
-# Requires the harvester
-alias theharvester='python3 /opt/theHarvester/theHarvester.py'
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/l4z/gcloud/google-cloud-sdk/path.zsh.inc' ]; then . '/home/l4z/gcloud/google-cloud-sdk/path.zsh.inc'; fi
 
-alias blackarch_packages="sudo pacman -Sgg | grep blackarch | cut -d' ' -f2 | sort -u"
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/l4z/gcloud/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/l4z/gcloud/google-cloud-sdk/completion.zsh.inc'; fi
 
-alias bfg='java -jar /opt/bfg/bfg.jar'
-
-alias vpn='sudo openvpn /home/l4z/blehblehbleh/nsantiago.ovpn'
-
-alias dep='$GOPATH/bin/dep'
-
-alias proton='$HOME/proton_vpn/protonvpn'
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /home/l4z/.node_modules/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/l4z/.node_modules/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /home/l4z/.node_modules/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /home/l4z/.node_modules/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f /home/l4z/.node_modules/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /home/l4z/.node_modules/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
-
-export SLACK_CLIENT_ID="595758498352.606955104070"
-export SLACK_CLIENT_SECRET="fc64226581ff73daeed035d2f695ef02"
-export CALLBACK_URI="http://localhost:3000/oauth/callback"
+export LC_ALL="en_US.UTF-8"
+export LANGUAGE="en_US.UTF-8"
+export GOOGLE_APPLICATION_CREDENTIALS=/home/l4z/.gcp/account.json
+export GCLOUD_PROJECT="soy-antenna-246117"
+export TERRAFORM_MODULES=/home/l4z/Desktop/stuff/terraform/src/terraform-modules
 
 
-export APP_CLIENT_ID='YPHSvyDDcYZGDcmG'
-export APP_CLIENT_SECRET='qW7fhUKYdYtksrIoan_bTsHPtz99CgLlvHTlKylworQ'
-export APP_SECRET="software engineers are the wizards of the 21st century"
-export SERVER_ADDRESS='18.136.106.163'
-export USER='l4z'
+export TESTDOMAIN="startopstech.com"
+export BK="e5947141673499b9643f355bafc87dd8ab56cd48"
+export CCI="bc2ec5ba84786e205969d0d6ceac1bc43e8614d5"
 
+alias r=ranger
 
-[[ -s "/home/l4z/.gvm/scripts/gvm" ]] && source "/home/l4z/.gvm/scripts/gvm"
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
 
-# Terraform environment variable values for  testing n-tier
-export SUBDOMAIN="terraform"
-export DOMAIN="l4z.xyz"
-export HOSTEDZONENAME="l4z.xyz."
+eval "$(pyenv init -)"
 
-alias pacshit="pacman"
+# Postgresql env for docker local
+export POSTGRESQL_USERNAME="postgres"
+export POSTGRESQL_PASSWORD=""
+export POSTGRESQL_PORT="5432"

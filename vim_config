@@ -4,8 +4,6 @@ filetype plugin indent on
 
 " Snips path
 "set runtimepath+=~/.vim/
-let g:UltiSnipsSnippetsDir="~/.vim/bangbang"
-let g:UltiSnipsSnippetDirectories=["bangbang"]
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -13,7 +11,6 @@ call vundle#begin()
 " Vundle plugins
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'SirVer/ultisnips'
 Plugin 'tpope/vim-fugitive'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'itchyny/lightline.vim'
@@ -21,13 +18,14 @@ Plugin 'fatih/vim-go'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'janko-m/vim-test'
 Plugin 'hashivim/vim-terraform'
-Plugin 'wakatime/vim-wakatime'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 call vundle#end()
 filetype plugin indent on
 
 " Vim terraform config
 let g:terraform_align=1
+let g:terraform_fmt_on_save=1
 
 " Vim lightline config
 
@@ -93,14 +91,6 @@ set ruler
 set synmaxcol=512
 set list
 
-" UltiSnip Configuration
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-f>"
-let g:UltiSnipsJumpBackwardTrigger="<c-d>"
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsListSnippets="<s-tab>"
-autocmd BufRead,BufNewFile *.vue setfiletype javascript
-
 " Tab Mappings
 map <leader>tt :tabnew<cr>
 map <leader>te :tabedit
@@ -158,3 +148,7 @@ function! RenameFile()
 endfunction
 map <leader>j :call RenameFile()<cr>
 set noshowmode
+
+" Terraform and terragrunt commands
+" command Tf execute "!terraform %"
+" command Tg execute "!terragrunt %"
