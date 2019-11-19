@@ -104,25 +104,9 @@ export RANGER_LOAD_DEFAULT_RC=false
 alias ls="ls -l"
 
 export PATH="/home/l4z/.local/bin:$PATH"
-export GOPATH=$HOME/Desktop/stuff/terraform
-export PATH="$GOPATH/bin:$PATH"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/l4z/gcloud/google-cloud-sdk/path.zsh.inc' ]; then . '/home/l4z/gcloud/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/l4z/gcloud/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/l4z/gcloud/google-cloud-sdk/completion.zsh.inc'; fi
 
 export LC_ALL="en_US.UTF-8"
 export LANGUAGE="en_US.UTF-8"
-export GOOGLE_APPLICATION_CREDENTIALS=/home/l4z/.gcp/account.json
-export GCLOUD_PROJECT="soy-antenna-246117"
-export TERRAFORM_MODULES=/home/l4z/Desktop/stuff/terraform/src/terraform-modules
-
-
-export TESTDOMAIN="startopstech.com"
-export BK="e5947141673499b9643f355bafc87dd8ab56cd48"
-export CCI="bc2ec5ba84786e205969d0d6ceac1bc43e8614d5"
 
 alias r=ranger
 
