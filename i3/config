@@ -12,6 +12,7 @@
 set $mod Mod1
 set $mod2 Control
 set $mod4 Mod4
+set $s Shift
 
 focus_follows_mouse no
 
@@ -243,6 +244,8 @@ set $statussig SIGUSR1
 # Amount to increase/decrease volume as a percentage (used with -i, -d)
 set $volumestep 10
 
+set $shutdown "shutdown -h now"
+
 # alsa-utils settings when not using pulseaudio-utils
 #
 # To configure a default card, see https://www.alsa-project.org/main/index.php/Asoundrc
@@ -280,5 +283,15 @@ bindsym $mod2+space exec playerctl --all-players play-pause
 bindsym Print       exec flameshot full -p $HOME/Pictures/flameshot
 bindsym Shift+Print exec flameshot gui -p $HOME/Pictures/flameshot
 
+# bindsym $mod+Shift+x exec prompt "Are you sure you want to shutdown?" "$shutdown"
+
 # Loads polybar
 # exec_always --no-startup-id ~/.bin/bar.sh
+#
+
+# Browser bindings
+bindsym $mod2+n exec firefox
+bindsym $s+F1 exec firefox --new-tab https://startopsgroup.slack.com
+bindsym $s+F2 exec firefox --new-tab https://mail.google.com
+bindsym $s+F3 exec firefox --new-tab https://github.com
+

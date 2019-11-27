@@ -1,0 +1,5 @@
+#!/bin/bash
+
+if ping -c 1 google.com &> /dev/null; then
+  echo "It seems you're connected to the internet"
+fi
