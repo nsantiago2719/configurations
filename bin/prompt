@@ -1,4 +1,4 @@
 #!/bin/env bash
 # Source: https://git.lukesmith.xyz/dotfiles/file/.local/bin/prompt.html
 
-[ "$(printf "No\\nYes" | dmenu -i -p "$1" -nb darkred -sb red -sf white -nf gray )" = "Yes" ] && $2
+[ "$(printf "No\\nYes" | dmenu -i -p "$1" )" = "Yes" ] && $2
