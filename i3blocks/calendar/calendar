@@ -26,6 +26,7 @@ case "$BLOCK_BUTTON" in
   1|2|3) 
 
 	# the position of the upper left corner of the popup
+  BLOCK_Y=225
 	posX=$(($BLOCK_X - $WIDTH / 2))
 	posY=$(($BLOCK_Y - $HEIGHT))
 
