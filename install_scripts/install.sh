@@ -17,13 +17,13 @@ function install_rvm (){
     ### Add GPG key
     gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
     # Installing RVM with ruby version 2.6.0
-    curl -L https://get.rvm.io | bash -s stable --ruby=2.6.0
-    #Add RVM source in bashrc
-    echo "[[ -s '$HOME/.rvm/scripts/rvm' ]] && source '$HOME/.rvm/scripts/rvm'" >> $HOME/.bashrc
+    curl -L https://get.rvm.io | bash -s stable --ruby=2.6.3
+    #Add RVM source to zshrc
+    echo "[[ -s '$HOME/.rvm/scripts/rvm' ]] && source '$HOME/.rvm/scripts/rvm'" >> $HOME/.zshrc
     rvm requirements
     # Installing rails
     # make sure to install the latest rails
-    gem install rails --no-rdoc --no-ri
+    gem install rails --no-document
   fi
 }
 
