@@ -2,4 +2,6 @@
 
 if ping -c 1 google.com &> /dev/null; then
   echo "It seems you're connected to the internet"
+else
+  echo "Hmmm. You either have a slow connection or disconnected from the internet"
 fi

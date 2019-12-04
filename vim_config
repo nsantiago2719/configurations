@@ -152,3 +152,4 @@ set noshowmode
 " Terraform and terragrunt commands
 " command Tf execute "!terraform %"
 " command Tg execute "!terragrunt %"
+Plugin 'wakatime/vim-wakatime'
