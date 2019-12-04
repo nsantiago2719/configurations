@@ -2,7 +2,7 @@
 
 #
 # Author: Norman Santiago
-# This installs rvm with ruby version 2.6.0 and the latest rails.
+# This installs rvm with ruby version 2.6.3 and the latest rails.
 # Depending on the operating system and distro it will install gnupg, curl
 # and git packages.
 #
@@ -16,7 +16,7 @@ function install_rvm (){
   if ! which rvm > /dev/null; then
     ### Add GPG key
     gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-    # Installing RVM with ruby version 2.6.0
+    # Installing RVM with ruby version 2.6.3
     curl -L https://get.rvm.io | bash -s stable --ruby=2.6.3
     #Add RVM source to zshrc
     echo "[[ -s '$HOME/.rvm/scripts/rvm' ]] && source '$HOME/.rvm/scripts/rvm'" >> $HOME/.zshrc
