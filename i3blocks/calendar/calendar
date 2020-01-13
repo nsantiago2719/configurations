@@ -2,8 +2,9 @@
 
 WIDTH=${WIDTH:-200}
 HEIGHT=${HEIGHT:-200}
-DATEFMT=${DATEFMT:-"+%a %d.%m.%Y %H:%M:%S"}
+DATEFMT=${DATEFMT:-"+%H:%M:%S %d.%m.%Y"}
 SHORTFMT=${SHORTFMT:-"+%H:%M:%S"}
+TIMEZONE=${TIMEZONE:-""}
 
 OPTIND=1
 while getopts ":f:W:H:" opt; do
@@ -37,5 +38,11 @@ case "$BLOCK_BUTTON" in
 	    --posx=$posX --posy=$posY \
 	    > /dev/null"
 esac
-echo "$LABEL$(date "$DATEFMT")"
-echo "$LABEL$(date "$SHORTFMT")"
+
+if [[ $TIMEZONE -eq "" ]]; then
+  echo "$LABEL$(date "$DATEFMT")"
+  echo "$LABEL$(date "$SHORTFMT")"
+else
+  echo "$LABEL $(TZ=$TIMEZONE date "$DATEFMT")"
+  echo "$LABEL $(TZ=$TIMEZONE date "$SHORTFMT")"
+fi

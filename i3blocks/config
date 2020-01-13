@@ -35,7 +35,7 @@ markup=none
 # interval=60
 # 
 [playerctl]
-command=./custom/playerctl
+command=./custom/blocks/playerctl
 label=  
 instance=spotify
 interval=1
@@ -50,10 +50,17 @@ interval=1
 command=./calendar/calendar
 interval=10
 LABEL=  
-DATEFMT=+%H:%M:%S
+DATEFMT=+%r : %B %d
+
+[calendar2]
+command=./calendar/calendar
+interval=10
+LABEL= Surrey: 
+DATEFMT=+%r : %B %d
+TIMEZONE=Canada/Pacific
 
 [network]
-command=./custom/network
+command=./custom/blocks/network
 label=
 instance=wlp7s0
 interval=5
@@ -61,24 +68,20 @@ separator=false
 separator_block_width=5
 
 [bandwidth]
-command=./custom/bandwidth
-label=
-instance=wlp7s0;in
-interval=1
-separator=false
-separator_block_width=5
-
-[bandwidth]
-command=./custom/bandwidth
-label=  
-instance=wlp7s0;out
+command=./custom/blocks/bandwidth
+instance=wlp7s0
 interval=1
 
 [network]
-command=./custom/network
-label= LAN: 
+command=./custom/blocks/network
+label=LAN: 
 instance=enp8s0
 interval=5
+
+[openvpn]
+command=./custom/blocks/vpn
+labal=VPN:
+interval=70
 
 [volume-pulseaudio]
 command=./volume-pulseaudio/volume-pulseaudio
@@ -97,3 +100,44 @@ label=⚡
 interval=10
 bat_number=0
 
+# Generic media player support
+#
+# This displays "ARTIST - SONG" if a music is playing.
+# Supported players are: spotify, vlc, audacious, xmms2, mplayer, and others.
+#[mediaplayer]
+#instance=spotify
+#interval=5
+#signal=10
+
+# OpenVPN support
+#
+# Support multiple VPN, with colors.
+#[openvpn]
+#interval=20
+
+# Temperature
+#
+# Support multiple chips, though lm-sensors.
+# The script may be called with -w and -c switches to specify thresholds,
+# see the script for details.
+#[temperature]
+#label=TEMP
+#interval=10
+
+# Key indicators
+#
+# Add the following bindings to i3 config file:
+#
+# bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
+# bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
+#[keyindicator]
+#KEY=CAPS
+#markup=pango
+#interval=once
+#signal=11
+
+#[keyindicator]
+#KEY=NUM
+#markup=pango
+#interval=once
+#signal=11
