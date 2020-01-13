@@ -1,17 +1,16 @@
 # #!/bin/bash
 # Author: Norman Santiago
 # This requires protonvpn-cli-ng installed
-
-PROTONVPN_HOME="$HOME/.pvpn-cli/"
-STATUS=$(sed '1q;d' $PROTONVPN_HOME/status | awk '{print $2}')
+#
+PROTONVPN="/home/`whoami`/.local/bin/protonvpn"
+STATUS=`$PROTONVPN s | sed '1q;d' | awk '{print $2}'`
 
 if [[ $STATUS == "Connected" ]]; then
-  IP=$(sed '3q;d' $PROTONVPN_HOME/status | awk '{print $2}')
-  SERVER=$(sed '4q;d' $PROTONVPN_HOME/status | awk '{print $2}')
+  IP=`$PROTONVPN s | sed '3q;d' | awk '{print $2}'`
+  SERVER=`$PROTONVPN s | sed '4q;d' | awk '{print $2}'`
   echo "Connected to $IP | Server: $SERVER"
 elif [[ $STATUS == "Disconnected" ]]; then
-  IP=$(sed '2q;d' $PROTONVPN_HOME/status | awk '{print $2}')
-  echo "VPN: Disconnected | IP: $IP"
+  echo "VPN: Disconnected"
 else
   echo "VPN: An Error Occured"
 fi
