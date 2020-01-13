@@ -21,6 +21,8 @@
 # Terminal:
 # \n => Newline/Line Feed (LF)
 
+print "The time and date for today is : `date '+%r %B %d'`"
+
 setopt PROMPT_SUBST
 
 autoload -U add-zsh-hook
