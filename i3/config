@@ -20,7 +20,7 @@ gaps inner 10
 smart_gaps on
 
 for_window [class="^.*"] border pixel 0
-for_window [class="Yad"] floating enabled
+for_window [class="Yad"] floating enable
 
 # exec --no-startup-id xrandr --newmode '1368x768' 85.00 1368 1440 1576 1784 768 771 781 798 -hsync +vsync
 # exec --no-startup-id xrandr --addmode eDP-1 1368x768
@@ -56,7 +56,7 @@ font pango:roboto 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminator
+bindsym $mod+Return exec tilix
 
 # kill focused window
 bindsym Control+q kill
@@ -198,10 +198,11 @@ bar {
          i3bar_command i3bar --transparency
          position top
          # workspace_buttons no
-         height 30
+         height 25
          font pango:Roboto 10px
          colors {
-           background #000000d9
+           #background #000000d9
+           background #2F343F
          }
 }
 # 
@@ -244,8 +245,6 @@ set $statussig SIGUSR1
 
 # Amount to increase/decrease volume as a percentage (used with -i, -d)
 set $volumestep 10
-
-set $shutdown "shutdown -h now"
 
 # alsa-utils settings when not using pulseaudio-utils
 #
@@ -301,7 +300,9 @@ bindsym $s+F11 exec firefox --new-tab https://youtube.com
 bindsym $s+F12 exec firefox --new-window https://youtube.com
 
 # Terminal bindings
-bindsym $mod+F1 exec terminator -e "sudo pacman -Syu"
+bindsym $mod+F1 exec tilix -e "sudo pacman -Syu"
+bindsym $mod+F2 exec spotify
+bindsym $mod+F3 exec firefox --new-window
 
 # w/ Prompts
 #bindsym $s+$mod+x exec --no-startup-id prompt "Are you sure you want to shutdown now?" echo "shutdown"
