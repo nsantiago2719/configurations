@@ -13,12 +13,13 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'git@github.com:ctrlpvim/ctrlp.vim.git'
 Plugin 'itchyny/lightline.vim'
-Plugin 'fatih/vim-go'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'janko-m/vim-test'
 Plugin 'hashivim/vim-terraform'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'chrisbra/csv.vim'
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 
 call vundle#end()
 filetype plugin indent on
@@ -40,14 +41,12 @@ let g:lightline = {
       \ },
       \ }
 
+
 " Vim teset configurations
 nmap <silent> t<C-n> :TestNearest<CR>
 nmap <silent> t<C-f> :TestFile<CR>
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
-
-" CtrlP
-" set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " Encoding
 set encoding=utf-8
@@ -90,6 +89,9 @@ set ruler
 " set cursorline
 set synmaxcol=512
 set list
+
+" CtrlP
+map <leader>cp :CtrlP <cr>
 
 " Tab Mappings
 map <leader>tt :tabnew<cr>
@@ -137,6 +139,10 @@ au InsertLeave * :set listchars+=trail:•
 
 " au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
 
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn|terraform)$',
+  \ }
+
 function! RenameFile()
   let old_name = expand('%')
   let new_name = input('File Name: ', expand('%'))
@@ -149,7 +155,4 @@ endfunction
 map <leader>j :call RenameFile()<cr>
 set noshowmode
 
-" Terraform and terragrunt commands
-" command Tf execute "!terraform %"
-" command Tg execute "!terragrunt %"
-Plugin 'wakatime/vim-wakatime'
+set number relativenumber
