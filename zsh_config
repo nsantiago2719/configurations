@@ -113,9 +113,9 @@ alias r=ranger
 
 export PATH="$PATH:$HOME/.local/bin"
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-# function battery_display {
-#   BAT_STATE=~/.oh-my-zsh/plugins/zsh-battery-state/battery_state.py
-#   echo `$BAT_STATE` 2>/dev/null
-# }
-# 
-# RPROMPT='$(battery_display)'
+function battery_display {
+  BAT_STATE=~/.oh-my-zsh/plugins/zsh-battery-state/battery_state.py
+  echo `$BAT_STATE` 2>/dev/null
+}
+
+RPROMPT='$(battery_display)'
