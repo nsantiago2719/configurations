@@ -1,6 +1,7 @@
 syntax on
 filetype plugin indent on
 
+set belloff=all
 
 " Snips path
 "set runtimepath+=~/.vim/
