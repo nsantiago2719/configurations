@@ -1,52 +1,145 @@
-i3-volume
-=========
-[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)][license]
+# i3-volume
 
-Volume control and volume notifications for [i3wm]
+Volume control with on-screen display notifications. Works with any window manager, such as [i3wm], [bspwm], and [KDE], as a standalone script, or with statusbars such as [polybar], [i3blocks], [i3status], and more.
+
+[![License: GPL v2][license-badge]][license] ![build][build]
 
 ## Installation
 
-#### Requirements
-* [i3wm]
-* [alsa-utils] or [pulseaudio-utils]
+Read the [installation instructions](https://github.com/hastinbe/i3-volume/wiki/Installation) to get started. For a specific usage:
 
-#### Optional
-* [notify-osd], [dunst], or any [libnotify] compatible notification daemon
-* `notify-send` (provided by [libnotify]) or `dunstify` (provided by [dunst])
+- [i3wm](https://github.com/hastinbe/i3-volume/wiki/Installation#i3wm)
+- [polybar](https://github.com/hastinbe/i3-volume/wiki/Installation#polybar)
+- [i3blocks](https://github.com/hastinbe/i3-volume/wiki/Usage-with-i3blocks)
 
-#### Arch Linux
-Arch Linux users may find PKGBUILD in [aur].
+### Usage
 
-#### ALSA mixer and PulseAudio
-Volume control can be done through either [alsa-utils], [pulseaudio-utils], or both. Use one of the example configuration to get started.
-
-#### Notifications
-Notifications are provided by [libnotify]. Any [libnotify] compatible notification daemon can be used for notifications. The most common are [notify-osd] and [dunst].
-
-If you are using [dunst], you may optionally choose to use `dunstify` instead of `notify-send` by adding the `-y` option.
-
-Expiration time of notifications can be changed using the `-e <time_in_milliseconds>` option. Default is 1500 ms. (Ubuntu's Notify OSD and GNOME Shell both ignore the expiration parameter.)
-
-### Guide
-Clone this repository: `git clone https://github.com/hastinbe/i3-volume.git ~/i3-volume`
-
-Append the contents of the sample configuration files `i3volume-alsa.conf` or `i3volume-pulseaudio.conf` to your i3 config, such as `~/.config/i3/config`
-
-Reload i3 configuration by pressing `mod+Shift+r`
-
-## Usage
 Use your keyboard volume keys to increase, decrease, or mute your volume. If you have a volume indicator in your status line it will be updated to reflect the volume change. When notifications are enabled a popup will display the volume level.
 
-Example of notifications using [notify-osd]:
 
-![Volume Notifications](https://github.com/hastinbe/i3-volume/blob/master/volume-notifications.png)
+#### On-Screen Notifications
 
-## Common Issues
-* [alsa-utils] won't unmute if `pulseaudio` is running. You must disable pulseaudio's auto respawn and terminate the `pulseaudio` process. Or use [pulseaudio-utils] for unmuting.
-* [dunst] isn't displaying icons in notifications. `icon_position` needs to be set to either `left` or `right` (default is `off`) in your `~/.config/dunst/dunstrc`.
-* [dunst] icons are too small. Change `icon_path` in your `~/.config/dunst/dunstrc` to a path containing larger icons, such as `/usr/share/icons/gnome/32x32/status/:/usr/share/icons/gnome/32x32/devices/`. Alternatively try increasing `max_icon_size`
+| [notify-osd] | [dunst] | [xob] |
+| ------------ | ------- | ----- |
+| ![notify-osd notifications](https://github.com/hastinbe/i3-volume/wiki/images/notify-osd.png) | ![dunst notifications](https://github.com/hastinbe/i3-volume/wiki/images/dunst.png) | ![xob notifications](https://github.com/hastinbe/i3-volume/wiki/images/xob.png) |
 
-`Note` only one notification daemon can be running at the same time. [dunst] can't be running for notifications to go through [notify-osd] and vice-versa.
+| [XOSD] | [herbe] | [volnoti] |
+| ------ | ------- | --------- |
+| ![xosd notifications](https://github.com/hastinbe/i3-volume/wiki/images/xosd.png) | ![herbe notifications](https://github.com/hastinbe/i3-volume/wiki/images/herbe.png) | ![volnoti notifications](https://github.com/hastinbe/i3-volume/wiki/images/volnoti.png)
+
+| [KOSD] |
+| ------ |
+| ![kosd notifications](https://github.com/hastinbe/i3-volume/wiki/images/kosd.png) |
+
+Read about [notifications](https://github.com/hastinbe/i3-volume/wiki/Notifications) for more information.
+
+### Standalone
+
+`i3-volume` does not require any particular desktop environment and can be used as a standalone script.
+
+#### Command-line options
+```
+Usage: ./volume [<options>] <command> [<args>]
+Control volume and related notifications.
+
+Commands:
+  up <value>                  increase volume
+  down <value>                decrease volume
+  set <value>                 set volume
+  mute                        toggle mute
+  listen                      listen for changes to a PulseAudio sink
+  output <format>             output volume in a supported format
+                              custom format substitutions:
+                                  %v = volume
+                                  %s = sink name (PulseAudio only)
+                                  %c = card (alsamixer only)
+                                  %m = mixer (alsamixer only)
+                                  %p = volume progress bar
+                                  %i = volume icon/emoji
+
+                                  examples:
+                                      "Volume is %v" = Volume is 50%
+                                      "%i %v %p \n"  = 奔 50% ██████████
+  outputs                     show available output formats
+  notifications               show available notification methods
+  help                        display help
+
+Options:
+  -a                          use amixer
+  -n                          enable notifications
+  -C                          use libcanberra for playing event sounds
+  -P                          play sound for volume changes
+  -j <muted,high,low,medium>  specify custom volume emojis as a comma separated list
+  -t <process_name>           process name of status bar (requires -u)
+  -u <signal>                 signal to update status bar (requires -t)
+  -x <value>                  maximum volume
+  -X <value>                  maximum amplification; if supported (default: 2)
+  -h                          display help
+
+amixer Options:
+  -c <card>                   card number to control
+  -m <mixer>                  set mixer (default: Master)
+
+PulseAudio Options:
+  -s <sink>                   symbolic name of sink
+
+Notification Options:
+  -N <method>                 notification method (default: libnotify)
+  -p                          enable progress bar
+  -L <placement>              progress bar placement (default: summary; requires -p)
+                              placements:
+                                  body
+                                  summary
+  -e <expires>                expiration time of notifications in ms
+  -l                          use fullcolor instead of symbolic icons
+  -S <suffix>                 append suffix to symbolic icon names
+  -y                          use dunstify (default: notify-send)
+
+Environment Variables:
+  XOSD_PATH                   path to osd_cat
+  HERBE_PATH                  path to herbe
+  VOLNOTI_PATH                path to volnoti-show
+  DUNSTIFY_PATH               path to dunstify
+  CANBERRA_PATH               path to canberra-gtk-play
+  NOTIFY_SEND_PATH            path to notify-send or notify-send.py
+  USE_NOTIFY_SEND_PY          flag to use notify-send.py instead of notify-send
+  NO_NOTIFY_COLOR             flag to disable colors in notifications
+```
+
+## Migrating
+
+### Version 2.x to 3.x
+
+Version 3 introduces commands which makes it incompatible with previous versions. Your command-line usage and/or configured hotkeys need to be updated to reflect this.
+
+| Change | v2 | v3 |
+| ------ | -- | -- |
+| `-d` is now the `down` command | `volume -d 5` | `volume down 5` |
+| `-i` is now the `up` command | `volume -i 5` | `volume up 5` |
+| `-m` is now the `mute` command | `volume -m` | `volume mute` |
+| `-o` is now the `output` command | `volume -o i3blocks` | `volume output i3blocks` |
+| `-v` is now the `set` command | `volume -v 5` | `volume set 5` |
+| `-L` is now the `listen` command | `volume -L` | `volume listen` |
+| `-M` is now the `-m` option | `volume -M Master` | `volume -m Master` |
+
+## Interoperability
+
+`i3-volume` is capable of working with many other programs. The following lists a few with examples:
+
+| Program | Note |
+| ---------- | ----- |
+| **[i3blocks]** | See our [example blocklet](https://github.com/hastinbe/i3-volume/wiki/Usage-with-i3blocks) |
+| **[i3status-rust]** | See our [example custom block](https://github.com/hastinbe/i3-volume/wiki/Usage-with-i3status-rust) |
+| **[xob]** | Requires extra steps for notifications. [Guide](https://github.com/hastinbe/i3-volume/wiki/Usage-with-xob) |
+| **[XOSD]** | Notifications require the `-N xosd` option. [Example](https://github.com/hastinbe/i3-volume/wiki/Usage-with-XOSD) |
+| **[herbe]** | Notifications require the `-N herbe` option. [Example](https://github.com/hastinbe/i3-volume/wiki/Usage-with-herbe) |
+| **[volnoti]** | Notifications require the `-N volnoti` option. [Example](https://github.com/hastinbe/i3-volume/wiki/Usage-with-volnoti) |
+| **[KOSD]** | Notifications require the `-N kosd` option. [Example](https://github.com/hastinbe/i3-volume/wiki/Usage-with-kosd) |
+| **[sxhkd]** | For keybindings with or without [i3wm], often used with [bspwm]. [Example](https://github.com/hastinbe/i3-volume/wiki/Keybindings#sxkhd) |
+
+## Help
+
+Having a problem? Try reading our [common issues](https://github.com/hastinbe/i3-volume/wiki/Common-Issues) or open an [issue](https://github.com/hastinbe/i3-volume/issues/new).
 
 ## License
 `i3-volume` is released under [GNU General Public License v2][license]
@@ -54,10 +147,25 @@ Example of notifications using [notify-osd]:
 Copyright (C) 1989, 1991 Free Software Foundation, Inc.
 
 [alsa-utils]: https://alsa.opensrc.org/Alsa-utils
-[aur]: https://aur.archlinux.org/packages/i3-volume/
+[bspwm]: https://github.com/baskerville/bspwm
+[build]: https://travis-ci.org/hastinbe/i3-volume.svg?branch=master
 [dunst]: https://dunst-project.org
+[herbe]: https://github.com/dudik/herbe
+[KDE]: https://kde.org
+[KOSD]: https://store.kde.org/p/1127472/show/page/5
+[i3blocks]: https://github.com/vivien/i3blocks
+[i3status]: https://github.com/i3/i3status
+[i3status-rust]: https://github.com/greshake/i3status-rust
 [i3wm]: https://i3wm.org
 [libnotify]: https://developer.gnome.org/libnotify
 [license]: https://www.gnu.org/licenses/gpl-2.0.en.html
+[license-badge]: https://img.shields.io/badge/License-GPL%20v2-blue.svg
+[logo]: assets/logo.svg
 [notify-osd]: https://launchpad.net/notify-osd
+[polybar]: https://github.com/polybar/polybar
 [pulseaudio-utils]: https://www.freedesktop.org/wiki/Software/PulseAudio/
+[sxhkd]: https://github.com/baskerville/sxhkd
+[volnoti]: https://github.com/davidbrazdil/volnoti
+[wiki]: https://github.com/hastinbe/i3-volume/wiki
+[xob]: https://github.com/florentc/xob
+[XOSD]: https://sourceforge.net/projects/libxosd/

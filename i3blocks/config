@@ -26,72 +26,36 @@
 # Each block command defaults to the script name to avoid boilerplate.
 # Change $SCRIPT_DIR to the location of your scripts!
 command=$SCRIPT_DIR/$BLOCK_NAME
-separator_block_width=15
+separator_block_width=10
 markup=none
+separator=false
 
 # [gcalcli]
 # command=./gcalcli/calc
 # label=Next Event:  
 # interval=60
-# 
-[playerctl]
-command=./custom/blocks/playerctl
-label=  
-instance=spotify
-interval=1
-
 # [mediaplayer]
 # command=./mediaplayer/mediaplayer
 # instance=spotify
 # interval=1
 # signal=10
 
-[calendar]
-command=./calendar/calendar
-interval=10
-LABEL=  
-DATEFMT=+%r : %B %d
-
 [calendar2]
 command=./calendar/calendar
 interval=10
-LABEL= Surrey: 
+align=center
+LABEL=Surrey: 
 DATEFMT=+%r : %B %d
 TIMEZONE=Canada/Pacific
 
-[network]
-command=./custom/blocks/network
-label=
-instance=wlp7s0
-interval=5
-separator=false
-separator_block_width=5
+[calendar]
+command=./calendar/calendar
+interval=10
+DATEFMT=+%r : %B %d
+align=center
 
-[bandwidth]
-command=./custom/blocks/bandwidth
-instance=wlp7s0
-interval=1
 
-[network]
-command=./custom/blocks/network
-label=LAN: 
-instance=enp8s0
-interval=5
 
-[openvpn]
-command=./custom/blocks/vpn
-labal=VPN:
-interval=70
-
-[volume-pulseaudio]
-command=./volume-pulseaudio/volume-pulseaudio
-interval=persist
-SUBSCRIBE=1
-SHORT_FORMAT=Volume: ${VOL}% ${SYMB}
-LONG_FORMAT=Volume: ${VOL}% ${SYMB}
-
-# Battery indicator
-#
 # The battery instance defaults to 0.
 [battery]
 label=BAT
@@ -99,6 +63,20 @@ command=./battery/battery
 label=⚡ 
 interval=10
 bat_number=0
+
+[separator]
+full_text= | 
+
+[network]
+command=$HOME/.local/bin/wifimenu
+full_text=直 
+
+[separator]
+full_text=|
+
+[click]
+full_text=  
+command=$HOME/.local/bin/powermenu
 
 # Generic media player support
 #

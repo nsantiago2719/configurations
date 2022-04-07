@@ -26,10 +26,7 @@ for_window [class="Yad"] floating enable
 # exec --no-startup-id xrandr --addmode eDP-1 1368x768
 # exec --no-startup-id xrandr --output eDP-1 --mode 1368x768
 
-exec_always --no-startup-id nm-applet
 exec --no-startup-id ~/.fehbg
-exec --no-startup-id compton --config ~/.config/compton.conf -b
-exec --no-startup-id conky
 # exec --no-startup-id betterlockscreen -w dim
 
 #exec terminator && i3-msg "[id=$(xdotool getactivewindow)] floating enable"
@@ -198,8 +195,9 @@ bar {
          #i3bar_command i3bar --transparency
          position top
          # workspace_buttons no
-         height 25
-         font pango:Roboto 10px
+         height 30 
+         font pango:Roboto Bold 12px
+         separator_symbol " "
          colors {
            #background #000000d9
            background #2F343F
@@ -212,7 +210,7 @@ bar {
 # Runs mock_menu
 # bindsym $mod4+d exec morc_menu
 bindsym $mod4+r exec "rofi -theme Arc-Dark -show run"
-bindsym $mod4+l exec "betterlockscreen -l dim -t 'Keep calm and use Arch'"
+bindsym $mod4+l exec "betterlockscreen -l dim --desc 'Keep calm and use Arch'"
 
 bindsym Control+$mod+l workspace next
 bindsym Control+$mod+h workspace prev
@@ -241,7 +239,6 @@ set $statuscmd i3blocks
 # Signal used to update the status line (used with -u, requires -t)
 #   i3blocks uses SIGRTMIN+10 by default
 #   i3status uses SIGUSR1 by default
-set $statussig SIGUSR1
 
 # Amount to increase/decrease volume as a percentage (used with -i, -d)
 set $volumestep 10
@@ -254,26 +251,6 @@ set $volumestep 10
 #   If not specified, i3-volume will let `amixer` use a default.
 #   List cards: aplay -l
 #set $alsacard 1
-
-# Uncomment to use alsa-utils (append "-c $alsacard" without quotes to override default card)
-#bindsym XF86AudioRaiseVolume exec $volumepath/volume -anp -i $volumestep -t $statuscmd -u $statussig
-#bindsym XF86AudioLowerVolume exec $volumepath/volume -anp -d $volumestep -t $statuscmd -u $statussig
-#bindsym XF86AudioMuset te        exec $volumepath/volume -amn -t $statuscmd -u $statussig
-
-# pulseaudio-utils settings when not using alsa-utils
-#
-# Symbolic name for sink (numeric index not supported) (used with -s $sinkname)
-#   Recommended: comment out this setting and omit the -s option to use default sink
-#   List sink names: pacmd list-sinks | awk -F "[<>]" '/^\s+name: <.*>/{print $2}'
-#set $sinkname alsa_output.pci-0000_00_1b.0.analog-stereo
-
-# Using pulseaudio-utils (append "-s $sinkname" without quotes to override default sink)
-bindsym XF86AudioRaiseVolume exec $volumepath/volume -nyp -i $volumestep -t $statuscmd -u $statussig
-bindsym XF86AudioLowerVolume exec $volumepath/volume -nyp -d $volumestep -t $statuscmd -u $statussig
-bindsym XF86AudioMute        exec $volumepath/volume -mny -t $statuscmd -u $statussig
-bindsym $mod2+Shift+k exec $volumepath/volume -nyp -i $volumestep -t $statuscmd -u $statussig
-bindsym $mod2+Shift+j exec $volumepath/volume -nyp -d $volumestep -t $statuscmd -u $statussig
-
 # Player shortcuts
 bindsym $mod2+Shift+h exec playerctl --all-players previous
 bindsym $mod2+Shift+l exec playerctl --all-players next
@@ -291,18 +268,38 @@ bindsym Shift+Print exec flameshot gui -p $HOME/Pictures/flameshot
 
 # Browser bindings
 bindsym $mod2+n exec firefox
-bindsym $s+F1 exec firefox --new-tab https://startopsgroup.slack.com
 bindsym $s+F2 exec firefox --new-tab https://mail.google.com
 bindsym $s+F3 exec firefox --new-tab https://github.com
-bindsym $s+F4 exec firefox --new-tab https://startops.1password.com
 bindsym $s+F5 exec firefox --new-tab https://console.aws.amazon.com
 bindsym $s+F11 exec firefox --new-tab https://youtube.com
 bindsym $s+F12 exec firefox --new-window https://youtube.com
 
 # Terminal bindings
 bindsym $mod+F1 exec tilix -e "sudo pacman -Syu"
-bindsym $mod+F2 exec spotify
-bindsym $mod+F3 exec firefox --new-window
 
 # w/ Prompts
 #bindsym $s+$mod+x exec --no-startup-id prompt "Are you sure you want to shutdown now?" echo "shutdown"
+# Review the lines below and append to ~/.config/i3/config
+
+## Volume control
+
+# Signal used to update the status line
+#   i3blocks uses SIGRTMIN+10 by default
+#   i3status uses SIGUSR1 by default
+set $statussig SIGUSR1
+
+# Amount to increase/decrease volume as a percentage
+
+# alsa-utils settings
+#
+# To configure a default card, see https://www.alsa-project.org/main/index.php/Asoundrc
+#
+# Card number to control.
+#   If not specified, i3-volume will let `amixer` use a default.
+#   List cards: aplay -l
+#set $alsacard 1
+
+# append "-c $alsacard" without quotes to override default card
+bindsym XF86AudioRaiseVolume exec --no-startup-id $volumepath/volume -an -t $statuscmd -u $statussig up $volumestep
+bindsym XF86AudioLowerVolume exec --no-startup-id $volumepath/volume -an -t $statuscmd -u $statussig down $volumestep
+bindsym XF86AudioMute        exec --no-startup-id $volumepath/volume -an -t $statuscmd -u $statussig mute
