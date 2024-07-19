@@ -15,9 +15,9 @@ function install_rvm (){
   ###Installing RVM, Ruby and Ruby on Rails
   if ! which rvm > /dev/null; then
     ### Add GPG key
-    gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+    gpg2 --keyserver keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
     # Installing RVM with ruby version 2.6.3
-    curl -L https://get.rvm.io | bash -s stable --ruby=2.6.3
+    curl -L https://get.rvm.io | bash -s stable
     #Add RVM source to zshrc
     echo "[[ -s '$HOME/.rvm/scripts/rvm' ]] && source '$HOME/.rvm/scripts/rvm'" >> $HOME/.zshrc
     rvm requirements
@@ -29,7 +29,7 @@ function install_rvm (){
 
 if [ $(uname -s) == "Linux" ]; then
   echo "What distro are you using?";
-  echo "Ubuntu: 1, Arch: 2, CentOS/RHEL/Fedora: 3";
+  echo "Ubuntu: 1, Arch: 2, CentOS/RHEL: 3, Fedora: 4";
   read distro
   if [ "$distro" == "1" ]; then
     sudo apt install ${packages[0]}
@@ -37,6 +37,8 @@ if [ $(uname -s) == "Linux" ]; then
     sudo pacman -S ${packages[0]}
   elif [ "$distro" == "3" ]; then
     sudo yum install ${packages[0]}
+  elif [ "$distro" == "4" ]; then
+    sudo dnf install ${packages[0]}
   fi
   install_rvm
   exit 0;
