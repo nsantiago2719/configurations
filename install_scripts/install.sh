@@ -20,6 +20,7 @@ function install_rvm (){
     curl -L https://get.rvm.io | bash -s stable
     #Add RVM source to zshrc
     echo "[[ -s '$HOME/.rvm/scripts/rvm' ]] && source '$HOME/.rvm/scripts/rvm'" >> $HOME/.zshrc
+    source $HOME/.zshrc
     rvm requirements
     # Installing rails
     # make sure to install the latest rails
