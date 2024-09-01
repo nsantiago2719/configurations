@@ -27,10 +27,8 @@ return {
       indent = { enable = true },
       ensure_installed = {
         "bash",
-        "c",
         "diff",
         "html",
-        "jsdoc",
         "json",
         "jsonc",
         "lua",
@@ -45,10 +43,8 @@ return {
         "query",
         "regex",
         "toml",
-        "tsx",
         "vim",
         "vimdoc",
-        "xml",
         "yaml",
       },
       incremental_selection = {
