@@ -38,7 +38,6 @@ return {
           end
           -- Jump to the definition of the word under your cursor.
           --  This is where a variable was first declared, or where a function is defined, etc.
-          --  To jump back, press <C-t>.
           map('fd', require('telescope.builtin').lsp_definitions, "Goto definition")
 
           -- Find references for the word under your cursor.
@@ -47,6 +46,7 @@ return {
           -- Jump to the implementation of the word under your cursor.
           --  Useful when your language has ways of declaring types without an actual implementation.
           map('fI', require('telescope.builtin').lsp_implementations, 'Goto Implementation')
+
         end,
       })
     end,
