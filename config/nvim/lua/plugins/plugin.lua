@@ -14,13 +14,21 @@ return {
 
       wk.add({
         { "<leader>f", group = "Search" },
-        { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find file"},
-        { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live grep"},
+        { "<leader>ff", require('telescope.builtin').find_files, desc = "Find file"},
+        { "<leader>fg", require('telescope.builtin').live_grep, desc = "Live grep"},
+        { "<leader>ft", require('telescope').extensions['todo-comments'].todo, desc = "Find Todos"},
         { "<leader>m", "<cmd>Mason<cr>", desc = "Mason" },
         { "<leader>g", "<cmd>LazyGit<cr>", desc = "LazyGit" },
         { "<leader>e", "<cmd>Neotree<cr>", desc = "NvimTree" },
+        { "<leader>l", "<cmd>Lazy<cr>", desc = "Lazy" },
       })
     end,
+  },
+  {
+    "folke/todo-comments.nvim",
+    event = "VimEnter",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = { signs = false }
   },
   {
     'akinsho/bufferline.nvim',
@@ -84,6 +92,13 @@ return {
     }
   },
   {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    ---@module "ibl"
+    ---@type ibl.config
+    opts = {},
+  },
+  {
     "kdheepak/lazygit.nvim",
     cmd = {
       "LazyGit",
@@ -98,6 +113,12 @@ return {
     },
     keys = {
     }
-  }
+  },
+  {
+    "j-hui/fidget.nvim",
+    opts = {
+      -- options
+    },
+  },
 }
 
