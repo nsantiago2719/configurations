@@ -1,0 +1,8 @@
+[init]
+	defaultBranch = main
+[commit]
+	gpgsign = true
+[color]
+	ui = true
+[alilas]
+	lg = log --oneline --decorate --all --graph
