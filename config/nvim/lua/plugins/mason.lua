@@ -25,6 +25,30 @@ return {
       require("lspconfig").gopls.setup {}
       require("lspconfig").tflint.setup {}
       require("lspconfig").ruby_lsp.setup {}
+
+
+      -- Jump to definitions and references under the cursor
+      vim.api.nvim_create_autocmd('LspAttach', {
+        group = vim.api.nvim_create_augroup('neo-lsp-attach', { clear = true }),
+        callback = function(event)
+          -- Create function map for creating keymaps
+          local map = function(keys, func, desc, mode)
+            mode =  mode or 'n'
+            vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+          end
+          -- Jump to the definition of the word under your cursor.
+          --  This is where a variable was first declared, or where a function is defined, etc.
+          --  To jump back, press <C-t>.
+          map('fd', require('telescope.builtin').lsp_definitions, "Goto definition")
+
+          -- Find references for the word under your cursor.
+          map('fr', require('telescope.builtin').lsp_references, 'Goto References')
+
+          -- Jump to the implementation of the word under your cursor.
+          --  Useful when your language has ways of declaring types without an actual implementation.
+          map('fI', require('telescope.builtin').lsp_implementations, 'Goto Implementation')
+        end,
+      })
     end,
   },
   {
@@ -40,7 +64,6 @@ return {
         terraform = { "tflint" },
         ruby = { "standardrb" },
         lua = { "luacheck" },
-        rust = { "bacon" },
         go = { "revive" },
         python = { "flake8" },
       }
@@ -58,6 +81,19 @@ return {
       -- vim.keymap.set("n", "<leader>ll", function()
       --    lint.try_lint()
       -- end, { desc = "Trigger linting for current file" })
+    end,
+  },
+  {
+    "rshkarin/mason-nvim-lint",
+    event = {
+      "BufReadPre",
+      "BufNewFile",
+    },
+
+    config = function()
+      require ('mason-nvim-lint').setup({
+        ensure_installed = { 'bacon' },
+      })
     end,
   },
   {
