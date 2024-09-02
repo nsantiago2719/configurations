@@ -5,6 +5,13 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Buffer mappings
-vim.keymap.set('n', "<S-w>", "<cmd>bd<cr>", { desc = "Close buffer" })
-vim.keymap.set('n', "<S-l>", "<cmd>bn<cr>", { desc = "Next buffer" })
-vim.keymap.set('n', "<S-h>", "<cmd>bp<cr>", { desc = "Previous buffer" })
+vim.keymap.set('n', "W", ":bd<CR>", { desc = "Close buffer" })
+vim.keymap.set('n', "L", ":bn<CR>", { desc = "Next buffer" })
+vim.keymap.set('n', "H", ":bp<CR>", { desc = "Previous buffer" })
+
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+vim.keymap.set("x", "<leader>p", [["_dP]])
+vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
