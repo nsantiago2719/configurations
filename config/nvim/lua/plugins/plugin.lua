@@ -81,6 +81,9 @@ return {
 ██   ██║██╔══██║██╔══╝  ██║     
 ╚█████╔╝██║  ██║███████╗███████╗
  ╚════╝ ╚═╝  ╚═╝╚══════╝╚══════╝
+ [https://l4z.xyz] [https://www.github.com/nsantiago2719]
+
+ Heroes are nothing without villains.
         ]]
       logo = string.rep("\n", 8) .. logo .. "\n\n"
 
@@ -92,8 +95,10 @@ return {
         config = {
           header = vim.split(logo, "\n"),
           center = {
+            { action = "Neotree toggle", desc = " NeoTree",    icon = " ", key = "e" },
             { action = "ene | startinsert", desc = " New File", icon = " ", key = "n" },
             { action = require('telescope.builtin').oldfiles, desc = " Recent Files",    icon = " ", key = "r" },
+            { action = "Telescope project", desc = " Projects",    icon = " ", key = "p" },
             { action = function() vim.api.nvim_input("<cmd>qa<cr>") end, desc = " Quit", icon = " ", key = "q" },
           },
           footer = function()
