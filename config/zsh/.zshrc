@@ -72,7 +72,7 @@ EDITOR="nvim"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git poetry)
+plugins=(git poetry direnv)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -111,12 +111,12 @@ source $ZSH/oh-my-zsh.sh
 ## Overwrite commands with alias
 
 alias ls=exa
-alias vim=lvim
-alias nvim=lvim
+alias vim=nvim
+
 
 ## PATH config
 # add user binaries
-export PATH="$PATH:$HOME/.local/bin:/opt/bins"
+export PATH="$PATH:$HOME/.local/bin:/opt/bins:/usr/local/go/bin"
 
 
 # kitty aliases
@@ -124,3 +124,22 @@ alias icat="kitten icat"
 alias kd="kitten diff"
 
 eval "$(~/.rbenv/bin/rbenv init - --no-rehash zsh)"
+
+[[ -s "/home/nsntg/.gvm/scripts/gvm" ]] && source "/home/nsntg/.gvm/scripts/gvm"
+
+
+# set GOPATH
+export GOPATH="$HOME/Desktop/codes/go_projects"
+
+# set rust
+export PATH=$PATH:$HOME/.cargo/bin
+
+# yazi shell wrapper
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
