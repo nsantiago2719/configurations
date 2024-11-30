@@ -72,7 +72,7 @@ EDITOR="nvim"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git poetry direnv)
+plugins=(git poetry direnv z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -105,11 +105,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-
-# Initialize z
-. $HOME/.local/z.sh
-## Overwrite commands with alias
-
 alias ls=exa
 alias vim=nvim
 
@@ -123,9 +118,13 @@ export PATH="$PATH:$HOME/.local/bin:/opt/bins:/usr/local/go/bin"
 alias icat="kitten icat"
 alias kd="kitten diff"
 
-eval "$(~/.rbenv/bin/rbenv init - --no-rehash zsh)"
-
 [[ -s "/home/nsntg/.gvm/scripts/gvm" ]] && source "/home/nsntg/.gvm/scripts/gvm"
+
+eval "$(rbenv init - --no-rehash zsh)"
+
+## starship
+eval "$(starship init zsh)"
+eval "$(starship completions zsh)"
 
 
 # set GOPATH
@@ -143,3 +142,6 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
+
+## Add flatpak apps in wofi menu
+export XDG_DATA_DIRS="$XDG_DATA_DIRS:/var/lib/flatpak/exports/share/applications"
