@@ -1,0 +1,155 @@
+{
+  "layer": "top",
+  "position": "top",
+  "spacing": 8,
+  "margin": 10,
+  "modules-left": [
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "clock",
+    "clock#bc"
+  ],
+  "modules-right": [
+    "pulseaudio",
+    "tray",
+    "privacy",
+    "group/power",
+  ],
+  "custom/sep": {
+    "format": "|"
+  },
+ "hyprland/workspaces": {
+    "format": "<sub>{id}</sub>",
+    "on-click": "activate",
+    "on-scroll-up": "hyprctl dispatch workspace e-1",
+    "on-scroll-down": "hyprctl dispatch workspace e+1",
+    "format-icons": {
+      "active": " ",
+      "urgent": " ",
+      "default": " "
+    }
+  },
+  "clock": {
+    "tooltip": true,
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "format": "PH: {:%I:%M %p}  ",
+    "format-alt": "PH: {:%B %d, %Y (%I: %M %p)} 󰃰 ",
+    "calendar": {
+      "mode"          : "year",
+      "mode-mon-col"  : 3,
+      "weeks-pos"     : "right",
+      "on-scroll"     : 1,
+      "format": {
+        "months":     "<span color='#ffead3'><b>{}</b></span>",
+        "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+        "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+      },
+    },
+    "actions": {
+    "on-scroll-up": "shift_down",
+    "on-scroll-down": "shift_up",
+    },
+  },
+  "clock#bc": {
+    "tooltip": true,
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "format": "PH: {:%I:%M %p}  ",
+    "format": "CA: {:%I:%M %p}  ",
+    "format-alt": "CA: {:%B %d, %Y (%I: %M %p)} 󰃰 ",
+    "timezone": "America/Vancouver",
+    "calendar": {
+      "mode"          : "year",
+      "mode-mon-col"  : 3,
+      "weeks-pos"     : "right",
+      "on-scroll"     : 1,
+      "format": {
+        "months":     "<span color='#ffead3'><b>{}</b></span>",
+        "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+        "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+      },
+    },
+    "actions": {
+    "on-scroll-up": "shift_down",
+    "on-scroll-down": "shift_up",
+    },
+  },
+  "tray": {
+    "icon-size": 16,
+    "show-passive-items": "true",
+    "spacing": 8 
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{icon} {volume}%",
+    "format-muted": "MUTE ",
+    "format-icons": {
+      "headphones": " ",
+      "handsfree": " ",
+      "headset": " ",
+      "phone": " ",
+      "portable": " ",
+      "car": " ",
+      "default": [
+        " ",
+        " "
+      ]
+    },
+    "scroll-step": 3,
+    "on-click": "pwvucontrol",
+    "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+  },
+  "privacy": {
+    "icon-spacing": 4,
+    "icon-size": 14,
+    "transition-duration": 250,
+    "modules": [
+      {
+        "type": "screenshare",
+        "tooltip": false,
+      },
+      {
+        "type": "audio-in",
+        "tooltip": false,
+      }
+    ]
+  },
+  "group/power": {
+    "orientation": "inherit",
+    "drawer": {
+        "transition-duration": 500,
+        "children-class": "not-power",
+        "transition-left-to-right": false,
+    },
+    "modules": [
+        "custom/power", 
+        "custom/suspend",
+        "custom/lock",
+        "custom/reboot",
+    ]
+  },
+  "custom/suspend": {
+      "format": "󰤄 ",
+      "tooltip": false,
+      "on-click": "systemctl suspend"
+  },
+  "custom/lock": {
+      "format": " ",
+      "tooltip": false,
+      "on-click": "hyprlock"
+  },
+  "custom/reboot": {
+      "format": " ",
+      "tooltip": false,
+      "on-click": "reboot"
+  },
+  "custom/power": {
+      "format": " ",
+      "tooltip": false,
+      "on-click": "shutdown now"
+  }
+}
