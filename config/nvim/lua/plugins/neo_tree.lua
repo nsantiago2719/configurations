@@ -7,6 +7,10 @@ return {
 		"MunifTanjim/nui.nvim",
 	},
 	lazy = false,
+	keys = {
+		{ "<leader>ee", "<cmd>Neotree toggle<CR>", desc = "Toggle NvimTree" },
+		{ "<leader>eb", "<cmd>Neotree buffers<CR>", desc = "Buffers" },
+	},
 	opts = {
 		close_if_last_window = false,
 		window = {
@@ -48,5 +52,4 @@ return {
 			},
 		},
 	},
-	keys = {},
 }

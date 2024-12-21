@@ -2,7 +2,8 @@ return {
 	"github/copilot.vim",
 	lazy = true,
 	keys = {
-		"<leader>ce",
+		{ "<leader>ce", desc = "Enable Copilot" },
+		{ "<leader>cd", desc = "Disable Copilot" },
 	},
 	config = function()
 		vim.cmd("Copilot setup")
