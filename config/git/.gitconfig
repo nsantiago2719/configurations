@@ -4,5 +4,5 @@
 	gpgsign = true
 [color]
 	ui = true
-[alilas]
+[alias]
 	lg = log --oneline --decorate --all --graph
