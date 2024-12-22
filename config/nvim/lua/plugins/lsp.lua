@@ -16,7 +16,7 @@ return {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		ensure_installed = { "gopls", "rust_analyzer", "tflint", "pyright", "ruby_lsp" },
+		ensure_installed = { "gopls", "rust_analyzer", "terraformls", "pyright", "ruby_lsp" },
 	},
 	{
 		"neovim/nvim-lspconfig",
@@ -27,8 +27,15 @@ return {
 			require("lspconfig").rust_analyzer.setup({})
 			require("lspconfig").pyright.setup({})
 			require("lspconfig").gopls.setup({})
-			require("lspconfig").tflint.setup({})
+			require("lspconfig").terraformls.setup({})
 			require("lspconfig").ruby_lsp.setup({})
+
+			vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+				pattern = { "*.tf", "*.tfvars" },
+				callback = function()
+					vim.lsp.buf.format()
+				end,
+			})
 
 			-- Jump to definitions and references under the cursor
 			vim.api.nvim_create_autocmd("LspAttach", {
@@ -86,31 +93,29 @@ return {
 			"BufReadPre",
 			"BufNewFile",
 		},
-
-		config = function()
-			require("mason-nvim-lint").setup({
-				ensure_installed = { "bacon" },
-			})
-		end,
+		opts = {
+			ensure_installed = { "flake8", "revive", "luacheck", "rubocop", "tflint" },
+		},
 	},
 	{
 		"stevearc/conform.nvim",
 		event = { "BufReadPre", "BufNewFile" },
-		config = function()
-			require("conform").setup({
-				formatters_by_ft = {
-					lua = { "stylua" },
-					ruby = { "rubocop" },
-					rust = { "rustfmt" },
-					yaml = { "yamlfmt" },
-					python = { "autopep8" },
-					go = { "gofumpt" },
-				},
-				format_on_save = {
-					timeout_ms = 500,
-					lsp_format = "fallback",
-				},
-			})
-		end,
+		opts = {
+			default_format_opts = {
+				lsp_format = "fallback",
+			},
+			formatters_by_ft = {
+				lua = { "stylua" },
+				ruby = { "rubocop" },
+				rust = { "rustfmt" },
+				yaml = { "yamlfmt" },
+				json = { "jq" },
+				python = { "autopep8" },
+				go = { "gofumpt" },
+			},
+			format_on_save = {
+				timeout_ms = 500,
+			},
+		},
 	},
 }

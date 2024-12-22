@@ -7,7 +7,7 @@ return {
 		wk.add({
 			{ "<leader>f", group = "Search" },
 			{ "<leader>e", group = "NvimTree" },
-			{ "<leader>c", group = "Clock and Copilot" },
+			{ "<leader>c", group = "C commands" },
 			{ "<leader>l", "<cmd>Lazy<CR>", desc = "Lazy" },
 			-- ignore these keys
 			{ "<leader>Y", hidden = true },
