@@ -10,6 +10,7 @@ return {
 		{ "<leader>fg", require("telescope.builtin").live_grep, desc = "Live grep" },
 		{ "<leader>ft", require("telescope").extensions["todo-comments"].todo, desc = "Find Todos" },
 		{ "<leader>fw", require("telescope.builtin").lsp_dynamic_workspace_symbols, desc = "Workspace symbols" },
+		{ "<leader>fy", ":Telescope yaml_schema<CR>", desc = "Select YAML schema" },
 	},
 	config = function()
 		local telescope = require("telescope")
