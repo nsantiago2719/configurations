@@ -15,3 +15,11 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("x", "<leader>p", [["_dP]])
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
+
+-- Tab mappings
+-- won't close if there is only one tab
+vim.keymap.set("n", "C", ":tabc<CR>", { desc = "Close Tab" })
+-- open new tab after the last one
+vim.keymap.set("n", "T", ":$tabnew<CR>", { desc = "New Tab" })
+vim.keymap.set("n", "I", ":tabn<CR>", { desc = "Next Tab" })
+vim.keymap.set("n", "U", ":tabp<CR>", { desc = "Previous Tab" })

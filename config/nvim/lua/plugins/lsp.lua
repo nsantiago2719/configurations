@@ -28,7 +28,6 @@ return {
 			require("lspconfig").pyright.setup({})
 			require("lspconfig").gopls.setup({})
 			require("lspconfig").terraformls.setup({})
-			require("lspconfig").ruby_lsp.setup({})
 
 			vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 				pattern = { "*.tf", "*.tfvars" },
@@ -71,7 +70,6 @@ return {
 
 			lint.linters_by_ft = {
 				terraform = { "tflint" },
-				ruby = { "rubocop" },
 				lua = { "luacheck" },
 				go = { "revive" },
 				python = { "flake8" },
@@ -94,7 +92,7 @@ return {
 			"BufNewFile",
 		},
 		opts = {
-			ensure_installed = { "flake8", "revive", "luacheck", "rubocop", "tflint" },
+			ensure_installed = { "flake8", "revive", "luacheck", "tflint" },
 		},
 	},
 	{
@@ -106,8 +104,6 @@ return {
 			},
 			formatters_by_ft = {
 				lua = { "stylua" },
-				ruby = { "rubocop" },
-				rust = { "rustfmt" },
 				yaml = { "yamlfmt" },
 				json = { "jq" },
 				python = { "autopep8" },
@@ -118,4 +114,10 @@ return {
 			},
 		},
 	},
+  {
+    "LittleEndianRoot/mason-conform",
+    opts = {
+      ensure_installed = { "stylua", "yamlfmt", "jq", "autopep8" },
+    }
+  },
 }

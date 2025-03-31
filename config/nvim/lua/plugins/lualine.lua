@@ -21,14 +21,18 @@ return {
 				component_separators = "",
 				section_separators = "",
 				theme = {
-					-- We are going to use lualine_c an lualine_x as left and
-					-- right section. Both are highlighted by c theme .  So we
-					-- are just setting default looks o statusline
 					normal = { c = { fg = colors.fg, bg = colors.bg } },
 					inactive = { c = { fg = colors.fg, bg = colors.bg } },
 				},
 			},
 			sections = {
+				lualine_b = {
+					"branch",
+				},
+				lualine_x = {
+					"fileformat",
+					"filetype",
+				},
 				lualine_z = {
 					{
 						function()
@@ -43,6 +47,25 @@ return {
 						function()
 							return " " .. os.date("%R")
 						end,
+					},
+				},
+			},
+			tabline = {
+				lualine_a = {
+					{
+						"buffers",
+						symbols = {
+							modified = " ●",
+							alternate_file = "",
+						},
+						use_mode_colors = true,
+					},
+				},
+				lualine_z = {
+					{
+						"tabs",
+						mode = 0,
+						path = 3,
 					},
 				},
 			},

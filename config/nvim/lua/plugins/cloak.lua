@@ -4,6 +4,7 @@ return {
 		{ "<leader>cc", "<cmd>CloakToggle<CR>", desc = "Toggle Cloak" },
 		{ "<leader>cp", "<cmd>CloakPreviewLine<CR>", desc = "Cloak Preview Line" },
 	},
+	lazy = false,
 	config = function()
 		require("cloak").setup({
 			enabled = true,
