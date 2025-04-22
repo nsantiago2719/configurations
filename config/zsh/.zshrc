@@ -72,7 +72,7 @@ EDITOR="nvim"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git poetry direnv z)
+plugins=(git poetry direnv zoxide)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -105,13 +105,13 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-alias ls=exa
+alias ls=eza
 alias vim=nvim
 
 
 ## PATH config
 # add user binaries
-export PATH="$PATH:$HOME/.local/bin:/opt/bins:/usr/local/go/bin"
+export PATH="$PATH:$HOME/.local/bin:/opt/bins:/usr/local/go/bin:/usr/bin"
 
 
 # kitty aliases
@@ -145,3 +145,9 @@ function y() {
 
 ## Add flatpak apps in wofi menu
 export XDG_DATA_DIRS="$XDG_DATA_DIRS:/var/lib/flatpak/exports/share/applications"
+
+## Rootless docker setup on Arch
+export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
+
+## NodeJS version Manager
+source /usr/share/nvm/init-nvm.sh
