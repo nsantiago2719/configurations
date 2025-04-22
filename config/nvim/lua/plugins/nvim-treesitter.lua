@@ -41,6 +41,7 @@ return {
 				"vim",
 				"vimdoc",
 				"yaml",
+				"svelte",
 			},
 			incremental_selection = {
 				enable = true,

@@ -1,6 +1,9 @@
 return {
 	{
 		"williamboman/mason.nvim",
+		dependencies = {
+			"williamboman/mason-lspconfig.nvim",
+		},
 		keys = {
 			{ "<leader>m", "<cmd>Mason<CR>", desc = "Mason" },
 		},
@@ -15,19 +18,33 @@ return {
 		},
 	},
 	{
-		"williamboman/mason-lspconfig.nvim",
-		ensure_installed = { "gopls", "rust_analyzer", "terraformls", "pyright", "ruby_lsp" },
-	},
-	{
 		"neovim/nvim-lspconfig",
 		config = function()
 			require("mason").setup()
-			require("mason-lspconfig").setup()
+			require("mason-lspconfig").setup({
+				ensure_installed = {
+					"gopls",
+					"terraformls",
+					"pyright",
+					"rust_analyzer",
+					"yamlls",
+					"html",
+					"eslint",
+					"svelt",
+					"cssls",
+					"tailwindcss",
+				},
+			})
 
-			require("lspconfig").rust_analyzer.setup({})
-			require("lspconfig").pyright.setup({})
-			require("lspconfig").gopls.setup({})
-			require("lspconfig").terraformls.setup({})
+			vim.lsp.enable("rust_analyzer")
+			vim.lsp.enable("svelt")
+			vim.lsp.enable("cssls")
+			vim.lsp.enable("eslint")
+			vim.lsp.enable("pyright")
+			vim.lsp.enable("gopls")
+			vim.lsp.enable("terraformls")
+			vim.lsp.enable("html")
+			vim.lsp.enable("tailwindcss")
 
 			vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 				pattern = { "*.tf", "*.tfvars" },
@@ -73,6 +90,8 @@ return {
 				lua = { "luacheck" },
 				go = { "revive" },
 				python = { "flake8" },
+				typescript = { "eslint_d" },
+				html = { "htmlhint" },
 			}
 
 			local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
@@ -92,7 +111,7 @@ return {
 			"BufNewFile",
 		},
 		opts = {
-			ensure_installed = { "flake8", "revive", "luacheck", "tflint" },
+			ensure_installed = { "flake8", "revive", "luacheck", "tflint", "eslint_d", "htmlhint" },
 		},
 	},
 	{
@@ -108,16 +127,20 @@ return {
 				json = { "jq" },
 				python = { "autopep8" },
 				go = { "gofumpt" },
+				html = { "prettierd" },
+				javascript = { "prettierd" },
+				typescript = { "prettierd" },
+				css = { "prettierd" },
 			},
 			format_on_save = {
 				timeout_ms = 500,
 			},
 		},
 	},
-  {
-    "LittleEndianRoot/mason-conform",
-    opts = {
-      ensure_installed = { "stylua", "yamlfmt", "jq", "autopep8" },
-    }
-  },
+	{
+		"LittleEndianRoot/mason-conform",
+		opts = {
+			ensure_installed = { "prettierd", "stylua", "yamlfmt", "jq", "autopep8", "gofumpt" },
+		},
+	},
 }
