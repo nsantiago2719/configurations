@@ -25,7 +25,7 @@ return {
 		"folke/todo-comments.nvim",
 		event = "VimEnter",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = { signs = false },
+		opts = { signs = true },
 	},
 	{
 		"akinsho/bufferline.nvim",
@@ -59,24 +59,6 @@ return {
 		},
 	},
 	{
-		"kdheepak/lazygit.nvim",
-		keys = {
-			{ "<leader>g", "<cmd>LazyGit<CR>", desc = "LazyGit" },
-		},
-		cmd = {
-			"LazyGit",
-			"LazyGitConfig",
-			"LazyGitCurrentFile",
-			"LazyGitFilter",
-			"LazyGitFilterCurrentFile",
-		},
-		-- optional for floating window border decoration
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		keys = {},
-	},
-	{
 		"j-hui/fidget.nvim",
 		opts = {
 			-- options
@@ -107,7 +89,7 @@ return {
 				config = {
 					header = vim.split(logo, "\n"),
 					center = {
-						{ action = "Neotree toggle", desc = " NeoTree", icon = " ", key = "e" },
+						{ action = "NvimTreeToggle", desc = " NvimTree", icon = " ", key = "e" },
 						{ action = "ene | startinsert", desc = " New File", icon = " ", key = "n" },
 						{
 							action = require("telescope.builtin").oldfiles,
