@@ -1,26 +1,12 @@
 return {
 	{
-		"williamboman/mason.nvim",
-		dependencies = {
-			"williamboman/mason-lspconfig.nvim",
-		},
-		keys = {
-			{ "<leader>m", "<cmd>Mason<CR>", desc = "Mason" },
-		},
-		opts = {
-			ui = {
-				icons = {
-					package_installed = "✓",
-					package_pending = "➜",
-					package_uninstalled = "✗",
-				},
-			},
-		},
-	},
-	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
+		},
+		event = {
+			"BufReadPre",
+			"BufNewFile",
 		},
 		config = function()
 			-- List of lsp to install
@@ -29,19 +15,17 @@ return {
 				"terraformls",
 				"pyright",
 				"rust_analyzer",
-				"yamlls",
+				"yaml",
 				"html",
 				"eslint",
 				"svelte",
 				"cssls",
 				"tailwindcss",
+				"lua_ls",
 			}
 			local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			require("mason").setup()
-			require("mason-lspconfig").setup({
-				ensure_installed = lsps,
-			})
 
 			for _, lsp in ipairs(lsps) do
 				vim.lsp.enable(lsp)

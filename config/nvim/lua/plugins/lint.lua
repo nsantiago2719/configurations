@@ -27,14 +27,4 @@ return {
 			})
 		end,
 	},
-	{
-		"rshkarin/mason-nvim-lint",
-		event = {
-			"BufReadPre",
-			"BufNewFile",
-		},
-		opts = {
-			ensure_installed = { "flake8", "revive", "luacheck", "tflint", "eslint_d", "htmlhint" },
-		},
-	},
 }

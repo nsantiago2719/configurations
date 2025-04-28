@@ -1,9 +1,11 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	tag = "0.1.8",
+	lazy = false,
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-telescope/telescope-project.nvim",
+		"someone-stole-my-name/yaml-companion.nvim",
 	},
 	keys = {
 		{ "<leader>ff", require("telescope.builtin").find_files, desc = "Find file" },
@@ -24,6 +26,8 @@ return {
 			},
 		})
 		telescope.load_extension("todo-comments")
+
+		telescope.load_extension("yaml_schema")
 		telescope.load_extension("project")
 	end,
 }
