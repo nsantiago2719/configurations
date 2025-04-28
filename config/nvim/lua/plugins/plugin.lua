@@ -86,7 +86,7 @@ return {
 				config = {
 					header = vim.split(logo, "\n"),
 					center = {
-						{ action = "NvimTreeToggle", desc = " NvimTree", icon = " ", key = "e" },
+						{ action = "NvimTreeToggle", desc = " NvimTree", icon = " ", key = "e" },
 						{ action = "ene | startinsert", desc = " New File", icon = " ", key = "n" },
 						{
 							action = require("telescope.builtin").oldfiles,
@@ -95,10 +95,27 @@ return {
 							key = "r",
 						},
 						{
+							action = require("telescope.builtin").find_files,
+							desc = " Find files",
+							icon = "󰱼 ",
+							key = "f",
+						},
+						{
 							action = require("telescope").extensions.project.project,
 							desc = " Projects",
-							icon = " ",
+							icon = " ",
 							key = "p",
+						},
+						{
+							action = function()
+								local tree_api = require("nvim-tree.api")
+								local config_path = vim.fn.stdpath("config")
+								vim.api.nvim_input("<cmd>cd " .. config_path .. "<cr>")
+								tree_api.tree.open({ path = config_path })
+							end,
+							desc = " NeoVim Config",
+							icon = " ",
+							key = "c",
 						},
 						{
 							action = function()
