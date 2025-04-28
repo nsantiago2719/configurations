@@ -49,45 +49,45 @@ return {
 				--- Python
 				{
 					"flake8",
-					condtion = python_checker(),
+					condtion = python_checker,
 				},
 				{
 					"pyright",
-					condtion = python_checker(),
+					condtion = python_checker,
 				},
 				{
 					"autopep8",
-					condtion = python_checker(),
+					condtion = python_checker,
 				},
 
 				--- Rust
 				{
 					"rust_analyzer",
-					condition = rust_checker(),
+					condition = rust_checker,
 				},
 
 				--- Go
 				{
 					"gopls",
-					condition = go_checker(),
+					condition = go_checker,
 				},
 				{
 					"revive",
-					condition = go_checker(),
+					condition = go_checker,
 				},
 				{
 					"gofumpt",
-					condition = go_checker(),
+					condition = go_checker,
 				},
 
 				--- Terraform
 				{
 					"tflint",
-					condition = terraform_checker(),
+					condition = terraform_checker,
 				},
 				{
 					"terraformls",
-					condition = terraform_checker(),
+					condition = terraform_checker,
 				},
 
 				--- YAML

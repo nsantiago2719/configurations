@@ -18,6 +18,7 @@ return {
 		}
 		require("lualine").setup({
 			options = {
+				disabled_filetypes = { "NvimTree" },
 				component_separators = "",
 				section_separators = "",
 				theme = {
@@ -47,25 +48,6 @@ return {
 						function()
 							return " " .. os.date("%R")
 						end,
-					},
-				},
-			},
-			tabline = {
-				lualine_a = {
-					{
-						"buffers",
-						symbols = {
-							modified = " ●",
-							alternate_file = "",
-						},
-						use_mode_colors = true,
-					},
-				},
-				lualine_z = {
-					{
-						"tabs",
-						mode = 0,
-						path = 3,
 					},
 				},
 			},

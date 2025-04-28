@@ -7,7 +7,7 @@ return {
 		config = function()
 			require("catppuccin").setup({
 				flavor = "mocha",
-				transparent_background = true,
+				transparent_background = false,
 				integrations = {
 					cmp = true,
 					notify = true,
@@ -27,14 +27,6 @@ return {
 		event = "VimEnter",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = { signs = true },
-	},
-	{
-		"akinsho/bufferline.nvim",
-		version = "*",
-		dependencies = "nvim-tree/nvim-web-devicons",
-		config = function()
-			require("bufferline").setup({})
-		end,
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
@@ -67,6 +59,10 @@ return {
 	},
 	{
 		"nvimdev/dashboard-nvim",
+		dependencies = {
+			"nvim-telescope/telescope.nvim",
+			"nvim-telescope/telescope-project.nvim",
+		},
 		lazy = false,
 		opts = function()
 			local logo = [[
@@ -98,7 +94,12 @@ return {
 							icon = " ",
 							key = "r",
 						},
-						{ action = "Telescope project", desc = " Projects", icon = " ", key = "p" },
+						{
+							action = require("telescope").extensions.project.project,
+							desc = " Projects",
+							icon = " ",
+							key = "p",
+						},
 						{
 							action = function()
 								vim.api.nvim_input("<cmd>qa<cr>")
