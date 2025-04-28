@@ -7,6 +7,7 @@ return {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope-project.nvim",
 			"someone-stole-my-name/yaml-companion.nvim",
+			"folke/todo-comments.nvim",
 		},
 		keys = {
 			{ "<leader>ff", require("telescope.builtin").find_files, desc = "Find file" },
@@ -17,6 +18,11 @@ return {
 				"<leader>fy",
 				"<cmd>Telescope yaml_schema<CR>",
 				desc = "Select YAML schema",
+			},
+			{
+				"<leader>fp",
+				require("telescope").extensions.project.project,
+				desc = "Telescope Project",
 			},
 		},
 		config = function()
@@ -33,13 +39,6 @@ return {
 
 			telescope.load_extension("yaml_schema")
 			telescope.load_extension("project")
-
-			vim.api.nvim_set_keymap(
-				"n",
-				"<leader>fp",
-				":lua require'telescope'.extensions.project.project{}<cr>",
-				{ noremap = true, silent = true, desc = "Projects" }
-			)
 		end,
 	},
 }
