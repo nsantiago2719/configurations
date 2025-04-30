@@ -20,11 +20,13 @@ return {
 		highlight = { enable = true },
 		indent = { enable = true },
 		ensure_installed = {
+			"helm",
 			"bash",
 			"diff",
 			"html",
 			"json",
 			"jsonc",
+			"css",
 			"lua",
 			"luadoc",
 			"luap",
