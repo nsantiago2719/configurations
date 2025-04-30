@@ -34,8 +34,14 @@ return {
 				dotfiles = true,
 			},
 			on_attach = custom_keybinds,
+			actions = {
+				change_dir = {
+					global = true,
+				},
+			},
 			renderer = {
-				decorators = { "Git", "Hidden", "Modified" },
+				hidden_display = "simple",
+				decorators = { "Git", "Hidden" },
 				icons = {
 					web_devicons = {
 						file = {
