@@ -18,7 +18,7 @@ return {
 			vim.keymap.set("n", "S", api.node.open.horizontal, opts("Open Horizontal"))
 			vim.keymap.set("n", "R", api.tree.reload, opts("Refresh"))
 			vim.keymap.set("n", "r", api.fs.rename, opts("Rename"))
-			vim.keymap.set("n", "H", api.tree.toggle_hidden_filter, opts("Toggle Filter: Dotfiles"))
+			vim.keymap.set("n", "H", api.tree.toggle_enable_filters, opts("Toggle All Filters"))
 			vim.keymap.set("n", "a", api.fs.create, opts("Create File Or Directory"))
 			vim.keymap.set("n", ".", api.tree.change_root_to_node, opts("Change Root"))
 			vim.keymap.set("n", "l", api.node.navigate.sibling.next, opts("Next Sibling"))
@@ -34,6 +34,12 @@ return {
 				dotfiles = true,
 			},
 			on_attach = custom_keybinds,
+			update_focused_file = {
+				enable = true,
+				update_root = {
+					enable = true,
+				},
+			},
 			actions = {
 				change_dir = {
 					global = true,
