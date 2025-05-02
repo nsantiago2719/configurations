@@ -15,6 +15,7 @@ return {
 				python = { "flake8" },
 				typescript = { "eslint_d" },
 				html = { "htmlhint" },
+				helm = { "kube-linter" },
 			}
 
 			local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
