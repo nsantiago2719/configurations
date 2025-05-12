@@ -33,67 +33,36 @@ return {
 				--- Python
 				{
 					"flake8",
-					condtion = function()
-						if os.execute("python --version") == 0 then
-							return 1
-						else
-							return nil
-						end
-					end,
 				},
 				{
 					"pyright",
-					condtion = function()
-						return os.execute("python --version")
-					end,
 				},
 				{
 					"autopep8",
-					condtion = function()
-						return os.execute("python --version")
-					end,
 				},
 
 				--- Rust
 				{
 					"rust_analyzer",
-					condition = function()
-						return os.execute("cargo version")
-					end,
 				},
 
 				--- Go
 				{
 					"gopls",
-					condition = function()
-						return os.execute("go version")
-					end,
 				},
 				{
 					"revive",
-					condition = function()
-						return os.execute("go version")
-					end,
 				},
 				{
 					"gofumpt",
-					condition = function()
-						return os.execute("go version")
-					end,
 				},
 
 				--- Terraform
 				{
 					"tflint",
-					condition = function()
-						return os.execute("terraform version")
-					end,
 				},
 				{
 					"terraformls",
-					condition = function()
-						return os.execute("terraform version")
-					end,
 				},
 
 				--- helm
@@ -102,9 +71,6 @@ return {
 				},
 				{
 					"helm-ls",
-					condition = function()
-						return os.execute("helm version")
-					end,
 				},
 
 				--- YAML

@@ -1,6 +1,9 @@
 return {
 	"hrsh7th/nvim-cmp",
-	dependencies = { "hrsh7th/cmp-buffer", "saadparwaiz1/cmp_luasnip" },
+	dependencies = {
+		"hrsh7th/cmp-buffer",
+		"saadparwaiz1/cmp_luasnip",
+	},
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		vim.opt.completeopt = { "menu", "menuone", "noselect" }
