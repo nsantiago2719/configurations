@@ -11,15 +11,23 @@ return {
 				integrations = {
 					cmp = true,
 					notify = true,
-					neotree = true,
+					nvimtree = true,
 					telescope = {
 						enabled = true,
 					},
 					which_key = true,
+					barbar = true,
+					dashboard = true,
+					indent_blankline = {
+						enabled = true,
+					},
+					native_lsp = {
+						enabled = true,
+					},
 				},
 			})
 			-- load the colorscheme here
-			vim.cmd([[colorscheme catppuccin-mocha]])
+			vim.cmd.colorscheme("catppuccin-mocha")
 		end,
 	},
 	{
