@@ -22,8 +22,14 @@ return {
 				{ name = "luasnip", keyword_length = 2 },
 			},
 			window = {
-				documentation = cmp.config.window.bordered({}),
-				completion = cmp.config.window.bordered({}),
+				documentation = cmp.config.window.bordered({
+					col_offset = -3,
+					side_padding = 0,
+					winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+				}),
+				completion = cmp.config.window.bordered({
+					winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+				}),
 			},
 			formatting = {
 				fields = { "menu", "abbr", "kind" },

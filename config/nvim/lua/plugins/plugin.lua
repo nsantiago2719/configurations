@@ -13,6 +13,11 @@ return {
 					shade = "dark",
 					percentage = 0.05,
 				},
+				custom_highlights = function(colors)
+					return {
+						NormalFloat = { bg = colors.base, fg = colors.text },
+					}
+				end,
 				integrations = {
 					cmp = true,
 					notify = true,
