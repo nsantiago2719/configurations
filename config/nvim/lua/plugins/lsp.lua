@@ -15,7 +15,6 @@ return {
 				"terraformls",
 				"pyright",
 				"rust_analyzer",
-				"yaml",
 				"html",
 				"eslint",
 				"svelte",

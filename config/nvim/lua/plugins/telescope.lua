@@ -6,7 +6,6 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope-project.nvim",
-			"someone-stole-my-name/yaml-companion.nvim",
 			"folke/todo-comments.nvim",
 		},
 		keys = {
@@ -37,7 +36,6 @@ return {
 			})
 			telescope.load_extension("todo-comments")
 
-			telescope.load_extension("yaml_schema")
 			telescope.load_extension("project")
 		end,
 	},
