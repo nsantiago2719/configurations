@@ -1,9 +1,9 @@
 return {
 	{
-		"williamboman/mason.nvim",
+		"mason-org/mason.nvim",
 		lazy = false,
 		dependencies = {
-			"williamboman/mason-lspconfig.nvim",
+			"mason-org/mason-lspconfig.nvim",
 			"mfussenegger/nvim-lint",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 		},
@@ -12,6 +12,7 @@ return {
 		},
 		opts = {
 			ui = {
+				border = "rounded",
 				icons = {
 					package_installed = "✓",
 					package_pending = "➜",

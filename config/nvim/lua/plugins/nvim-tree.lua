@@ -1,6 +1,9 @@
 return {
 	"nvim-tree/nvim-tree.lua",
 	lazy = false,
+	keys = {
+		{ "<leader>ee", "<cmd>NvimTreeToggle<CR>", desc = "Toggle NvimTree" },
+	},
 	opts = function()
 		vim.g.nvim_tree_disable_default_keybindings = 1
 		local function custom_keybinds(bufnr)

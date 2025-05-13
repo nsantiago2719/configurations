@@ -7,12 +7,12 @@ return {
 		wk.add({
 			{ "<leader>f", group = "Search" },
 			{ "<leader>e", group = "NvimTree" },
-			{ "<leader>ee", "<cmd>NvimTreeToggle<CR>", desc = "Toggle NvimTree" },
 			{ "<leader>c", group = "C commands" },
 			{ "<leader>l", "<cmd>Lazy<CR>", desc = "Lazy" },
 			-- ignore these keys
 			{ "<leader>Y", hidden = true },
 			{ "<leader>y", hidden = true },
+			{ "<leader>bx", hidden = true },
 		})
 	end,
 }

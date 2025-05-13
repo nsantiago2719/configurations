@@ -22,6 +22,7 @@ return {
 				"cssls",
 				"tailwindcss",
 				"lua_ls",
+				"helmls",
 			}
 			local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 

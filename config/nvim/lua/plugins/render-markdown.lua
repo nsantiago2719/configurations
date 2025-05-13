@@ -8,6 +8,8 @@ return {
 	---@module 'render-markdown'
 	---@type render.md.UserConfig
 	opts = {
+		-- overrides nofile to have NormalFloat highlight group
+		-- sets style to normal
 		overrides = {
 			buftype = {
 				nofile = {
