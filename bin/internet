@@ -1,11 +1,8 @@
 #!/bin/bash
 
-while true; do
-  sleep 5
-  DATE=`date`
-  if ping -c 1 google.com &> /dev/null; then
-    echo "${DATE} with internet"
-  else
-    echo "${DATE} no internet"
-  fi
-done
+if ping -c 1 google.com &> /dev/null; then
+  echo " "
+else
+  echo " "
+fi
+
