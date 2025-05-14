@@ -14,11 +14,6 @@ return {
 			{ "<leader>ft", require("telescope").extensions["todo-comments"].todo, desc = "Find Todos" },
 			{ "<leader>fw", require("telescope.builtin").lsp_dynamic_workspace_symbols, desc = "Workspace symbols" },
 			{
-				"<leader>fy",
-				"<cmd>Telescope yaml_schema<CR>",
-				desc = "Select YAML schema",
-			},
-			{
 				"<leader>fp",
 				require("telescope").extensions.project.project,
 				desc = "Telescope Project",
