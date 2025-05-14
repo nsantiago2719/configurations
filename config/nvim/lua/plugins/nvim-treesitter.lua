@@ -31,6 +31,7 @@ return {
 			"lua",
 			"luadoc",
 			"go",
+			"gotmpl",
 			"rust",
 			"markdown",
 			"markdown_inline",
@@ -76,6 +77,16 @@ return {
 	},
 	---@param opts TSConfig
 	config = function(_, opts)
+		vim.filetype.add({
+			extension = {
+				gotmpl = "gotmpl",
+			},
+			pattern = {
+				[".*/templates/.*%.tpl"] = "helm",
+				[".*/templates/.*%.ya?ml"] = "helm",
+				["helmfile.*%.ya?ml"] = "helm",
+			},
+		})
 		require("nvim-treesitter.configs").setup(opts)
 	end,
 }
