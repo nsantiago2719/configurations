@@ -1,6 +1,9 @@
 return {
 	"nvim-lualine/lualine.nvim",
-	dependencies = { "nvim-tree/nvim-web-devicons" },
+	dependencies = {
+		"nvim-tree/nvim-web-devicons",
+		"AndreM222/copilot-lualine",
+	},
 	event = "VeryLazy",
 	config = function()
 		require("lualine").setup({
@@ -13,9 +16,14 @@ return {
 			sections = {
 				lualine_b = {
 					"branch",
+					{
+						"diagnostics",
+						sources = { "nvim_diagnostic" },
+						symbols = { error = " ", warn = " ", info = " ", hint = " " },
+					},
 				},
 				lualine_x = {
-					"fileformat",
+					"copilot",
 					"filetype",
 				},
 				lualine_z = {
