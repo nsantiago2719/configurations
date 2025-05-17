@@ -1,6 +1,6 @@
 return {
 	s(
-		"errcheck",
+		{ trig = "errcheck", snippetType = "autosnippet" },
 		fmt(
 			[[
   if err != nil {{

@@ -8,22 +8,21 @@ return {
 	version = "v2.*",
 	build = "make install_jsregexp",
 	config = function()
-		local ls = require("luasnip")
-		ls.config.set_config({
-			enable_autosnippet = true,
-		})
-		ls.setup({
+		local luasnip = require("luasnip")
+		luasnip.setup({
+			enable_autosnippets = true,
 			snip_env = {
 				s = function(...)
-					local snip = ls.s(...)
+					local snip = luasnip.s(...)
 					table.insert(getfenv(2).ls_file_snippets, snip)
 				end,
 				parse = function(...)
-					local snip = ls.parser.parse_snippet(...)
+					local snip = luasnip.parser.parse_snippet(...)
 					table.insert(getfenv(2).ls_file_snippets, snip)
 				end,
 			},
 		})
+
 		require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/luasnips" })
 	end,
 }
