@@ -3,11 +3,11 @@ return {
 		{ trig = "errcheck", snippetType = "autosnippet" },
 		fmt(
 			[[
-  if err != nil {{
+  if {} != nil {{
     return {}
   }}
   ]],
-			i(1)
+			{ i(1), rep(1) }
 		)
 	),
 }
