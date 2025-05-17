@@ -4,6 +4,7 @@ return {
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"b0o/schemastore.nvim",
+			{ "mosheavni/yaml-companion.nvim", ft = { "yaml" } },
 		},
 		event = {
 			"BufReadPre",
@@ -21,7 +22,6 @@ return {
 				"svelte",
 				"cssls",
 				"tailwindcss",
-				"lua_ls",
 			}
 			local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
@@ -44,20 +44,97 @@ return {
 				})
 			end
 
-			lsp_config("yamlls", {
+			lsp_config("lua_ls", {
 				capabilities = lsp_capabilities,
-				filetypes = { "yaml", "yml" },
+				on_init = function(client)
+					if client.workspace_folders then
+						local path = client.workspace_folders[1].name
+						if
+							path ~= vim.fn.stdpath("config")
+							and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
+						then
+							return
+						end
+					end
+
+					client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+						runtime = {
+							version = "LuaJIT",
+							path = {
+								"lua/?.lua",
+								"lua/?/init.lua",
+							},
+						},
+						workspace = {
+							checkThirdParty = false,
+							library = {
+								vim.env.VIMRUNTIME,
+							},
+						},
+					})
+				end,
 				settings = {
-					yaml = {
-						hover = true,
-						validate = true,
-						completion = true,
-						schemas = {
-							kubernetes = { "/*.k8s.yaml" },
+					Lua = {
+						diagnostics = {
+							globals = { "vim" },
+						},
+						completion = { enable = true },
+						telemetry = { enable = false },
+					},
+				},
+			})
+
+			local yamlls_cfg = require("yaml-companion").setup({
+				builtin_matchers = {
+					kubernetes = { enabled = true },
+					cloud_init = { enabled = false },
+				},
+				schemas = {
+					{
+						name = "Kubernetes 1.32.1-Standalone",
+						uri = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.32.1-standalone/all.json",
+					},
+				},
+				lspconfig = {
+					flags = {
+						debounce_text_changes = 150,
+					},
+					capabilities = lsp_capabilities,
+					settings = {
+						redhat = { telemetry = { enabled = false } },
+						yaml = {
+							validate = true,
+							format = { enable = true },
+							hover = true,
+							schemaStore = {
+								enable = true,
+								url = "https://www.schemastore.org/api/json/catalog.json",
+							},
+							schemaDownload = { enable = true },
+							schemas = {},
+							trace = { server = "debug" },
 						},
 					},
 				},
 			})
+
+			vim.lsp.enable("yamlls")
+			vim.lsp.config("yamlls", yamlls_cfg)
+
+			-- lsp_config("yamlls", {
+			-- 	capabilities = lsp_capabilities,
+			-- 	filetypes = { "yaml", "yml" },
+			-- 	settings = {
+			-- 		yaml = {
+			-- 			hover = true,
+			-- 			validate = true,
+			-- 			completion = true,
+			-- 			schemas = {
+			-- 				kubernetes = { "/*.k8s.yaml" },
+			-- 			},
+			-- 		},
+			-- 	},
+			-- })
 
 			lsp_config("helm_ls", {
 				capabilities = lsp_capabilities,
