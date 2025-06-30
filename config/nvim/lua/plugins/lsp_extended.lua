@@ -15,7 +15,7 @@ return {
 		event = "InsertEnter",
 		opts = {
 			max_width = function()
-				return vim.api.nvim_win_get_width(0) * 0.5
+				return vim.api.nvim_win_get_width(0)
 			end,
 			handler_opts = {
 				border = "rounded",

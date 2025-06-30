@@ -43,10 +43,18 @@ return {
 			term:toggle()
 		end
 
+		local toggle_term_vsplit = function()
+			local term = Terminal:new({
+				direction = "horizontal",
+			})
+			term:toggle()
+		end
+
 		local terminal_mappings = {
 			{ "<leader>t", group = "Terminal" },
 			{ "<leader>tg", toggle_lazygit, desc = "LazyGit" },
 			{ "<leader>tt", toggle_term, desc = "Terminal" },
+			{ "<leader>ts", toggle_term_vsplit, desc = "Terminal VSplit" },
 		}
 
 		wk.add(terminal_mappings)
