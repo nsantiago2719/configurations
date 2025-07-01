@@ -151,13 +151,6 @@ return {
 				},
 			})
 
-			vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-				pattern = { "*.tf", "*.tfvars" },
-				callback = function()
-					vim.lsp.buf.format()
-				end,
-			})
-
 			-- Jump to definitions and references under the cursor
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("neo-lsp-attach", { clear = true }),
