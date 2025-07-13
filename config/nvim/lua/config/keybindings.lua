@@ -18,3 +18,7 @@ vim.keymap.set("n", "C", "<cmd>tabc<CR>", { desc = "Close Tab" })
 vim.keymap.set("n", "T", "<cmd>$tabnew<CR>", { desc = "New Tab" })
 vim.keymap.set("n", "I", "<cmd>tabn<CR>", { desc = "Next Tab" })
 vim.keymap.set("n", "U", "<cmd>tabp<CR>", { desc = "Previous Tab" })
+
+-- Better indenting in visual mode
+vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
+vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })

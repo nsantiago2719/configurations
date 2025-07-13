@@ -1,6 +1,7 @@
 vim.g.have_nerd_font = true
 vim.opt.number = true
 vim.opt.relativenumber = true
+
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 0
@@ -25,6 +26,7 @@ vim.opt.cursorline = true
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.termguicolors = true
+vim.opt.autoread = true
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
