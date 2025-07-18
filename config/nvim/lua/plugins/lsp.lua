@@ -151,14 +151,11 @@ return {
 				},
 			})
 
-			-- Jump to definitions and references under the cursor
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("neo-lsp-attach", { clear = true }),
 				callback = function(event)
 					-- Set floating preview configuration for LSP hover and signature help
 					local floating_preview_config = {
-						offset_x = 10,
-						offset_y = 10,
 						border = "rounded",
 						width = 80,
 						zindex = 51,
