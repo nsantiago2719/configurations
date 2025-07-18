@@ -43,6 +43,8 @@ return {
 			"yaml",
 			"svelte",
 			"terraform",
+			"javascript",
+			"typescript",
 		},
 		incremental_selection = {
 			enable = true,
