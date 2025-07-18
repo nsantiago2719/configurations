@@ -19,8 +19,10 @@ return {
 					}
 				end,
 				integrations = {
+					treesitter = true,
 					cmp = true,
 					notify = true,
+					noice = true,
 					nvimtree = true,
 					telescope = {
 						enabled = true,
@@ -28,6 +30,7 @@ return {
 					which_key = true,
 					barbar = true,
 					dashboard = true,
+					fidget = true,
 					indent_blankline = {
 						enabled = true,
 					},
@@ -72,8 +75,6 @@ return {
 			exclude = {
 				filetypes = {
 					"help",
-					"dart",
-					"startify",
 					"dashboard",
 					"packer",
 					"neogitstatus",
@@ -89,7 +90,11 @@ return {
 	{
 		"j-hui/fidget.nvim",
 		opts = {
-			-- options
+			notification = {
+				window = {
+					winblend = 0, -- Disable the window border
+				},
+			},
 		},
 	},
 	{

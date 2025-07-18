@@ -155,11 +155,11 @@ return {
 				group = vim.api.nvim_create_augroup("neo-lsp-attach", { clear = true }),
 				callback = function(event)
 					-- Set floating preview configuration for LSP hover and signature help
-					local floating_preview_config = {
-						border = "rounded",
-						width = 80,
-						zindex = 51,
-					}
+					-- local floating_preview_config = {
+					-- 	border = "single",
+					-- 	width = 80,
+					-- 	zindex = 51,
+					-- }
 					-- Create function map for creating keymaps
 					local map = function(keys, func, desc, mode)
 						mode = mode or "n"
@@ -178,12 +178,12 @@ return {
 
 					-- Show hover under the cursor
 					map("K", function()
-						vim.lsp.buf.hover(floating_preview_config)
+						vim.lsp.buf.hover()
 					end, "Hover")
 
 					-- Show signature help under the cursor
 					map("gH", function()
-						return vim.lsp.buf.signature_help(floating_preview_config)
+						return vim.lsp.buf.signature_help()
 					end, "Signature Help")
 				end,
 			})
