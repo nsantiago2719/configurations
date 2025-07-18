@@ -155,6 +155,14 @@ return {
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("neo-lsp-attach", { clear = true }),
 				callback = function(event)
+					-- Set floating preview configuration for LSP hover and signature help
+					local floating_preview_config = {
+						offset_x = 10,
+						offset_y = 10,
+						border = "rounded",
+						width = 80,
+						zindex = 51,
+					}
 					-- Create function map for creating keymaps
 					local map = function(keys, func, desc, mode)
 						mode = mode or "n"
@@ -170,6 +178,16 @@ return {
 					-- Jump to the implementation of the word under your cursor.
 					--  Useful when your language has ways of declaring types without an actual implementation.
 					map("gI", require("telescope.builtin").lsp_implementations, "Goto Implementation")
+
+					-- Show hover under the cursor
+					map("K", function()
+						vim.lsp.buf.hover(floating_preview_config)
+					end, "Hover")
+
+					-- Show signature help under the cursor
+					map("gH", function()
+						return vim.lsp.buf.signature_help(floating_preview_config)
+					end, "Signature Help")
 				end,
 			})
 		end,
