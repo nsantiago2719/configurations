@@ -11,10 +11,9 @@ return {
 			"BufNewFile",
 		},
 		config = function()
-			-- List of lsp to install
+			-- List of lsp to configure with default config
 			local lsps = {
 				"gopls",
-				"terraformls",
 				"pyright",
 				"rust_analyzer",
 				"html",
@@ -43,6 +42,17 @@ return {
 					capabilities = lsp_capabilities,
 				})
 			end
+
+			lsp_config("terraformls", {
+				filetypes = { "terraform", "tf", "hcl" },
+				settings = {
+					validateOnSave = true,
+				},
+				experimentalFeatures = {
+					prefillRequiredFields = true,
+				},
+				capabilities = lsp_capabilities,
+			})
 
 			lsp_config("lua_ls", {
 				capabilities = lsp_capabilities,
@@ -141,11 +151,7 @@ return {
 				settings = {
 					["helm-ls"] = {
 						yamlls = {
-							config = {
-								schemas = {
-									kubernetes = { "*./*.k8s.ya?ml", ".*/templates/*.yaml" },
-								},
-							},
+							path = "yaml-language-server",
 						},
 					},
 				},
@@ -154,12 +160,6 @@ return {
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("neo-lsp-attach", { clear = true }),
 				callback = function(event)
-					-- Set floating preview configuration for LSP hover and signature help
-					-- local floating_preview_config = {
-					-- 	border = "single",
-					-- 	width = 80,
-					-- 	zindex = 51,
-					-- }
 					-- Create function map for creating keymaps
 					local map = function(keys, func, desc, mode)
 						mode = mode or "n"
