@@ -32,13 +32,13 @@ return {
 					require("luasnip").lsp_expand(args.body)
 				end,
 			},
-			sources = {
-				{ name = "buffer", group_index = 2 },
-				{ name = "nvim_lsp", group_index = 2 },
-				{ name = "luasnip", group_index = 2 },
-				{ name = "copilot", group_index = 2 },
-				{ name = "path", group_index = 2 },
-			},
+			sources = cmp.config.sources({
+				{ name = "nvim_lsp" },
+				{ name = "buffer" },
+				{ name = "luasnip" },
+				{ name = "copilot" },
+				{ name = "path" },
+			}),
 			window = {
 				documentation = cmp.config.window.bordered({
 					col_offset = -3,
