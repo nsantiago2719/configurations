@@ -9,12 +9,10 @@ return {
 	config = function()
 		require("lspkind").init({
 			symbol_map = {
-				Copilot = " ",
 				Snippet = " ",
 			},
 		})
 		local lspkind = require("lspkind")
-		vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 		vim.opt.completeopt = { "menu", "menuone", "noselect" }
 		require("luasnip.loaders.from_vscode").lazy_load()
 		local luasnip = require("luasnip")
@@ -33,10 +31,8 @@ return {
 				end,
 			},
 			sources = cmp.config.sources({
-				{ name = "nvim_lsp" },
-				{ name = "buffer" },
 				{ name = "luasnip" },
-				{ name = "copilot" },
+				{ name = "buffer" },
 				{ name = "path" },
 			}),
 			window = {

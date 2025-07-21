@@ -10,7 +10,6 @@ return {
 		vim.g.barbar_auto_setup = false
 	end,
 	opts = {
-		auto_hide = 3,
 		insert_at_end = true,
 		sidebar_filetypes = {
 			NvimTree = {

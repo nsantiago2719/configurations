@@ -39,8 +39,7 @@ vim.opt.incsearch = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.diagnostic.config({
-	virtual_text = false,
 	virtual_lines = {
-		only_current_line = true,
+		current_line = true,
 	},
 })
