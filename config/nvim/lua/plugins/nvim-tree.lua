@@ -27,6 +27,8 @@ return {
 			vim.keymap.set("n", "l", api.node.navigate.sibling.next, opts("Next Sibling"))
 			vim.keymap.set("n", "h", api.node.navigate.sibling.prev, opts("Previous Sibling"))
 			vim.keymap.set("n", "d", api.fs.remove, opts("Delete"))
+			vim.keymap.set("n", "y", api.fs.copy.basename, opts("Copy Basename"))
+			vim.keymap.set("n", "Y", api.fs.copy.absolute_path, opts("Copy Absolute Path"))
 		end
 
 		local opts = {
