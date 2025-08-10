@@ -14,6 +14,7 @@ return {
 				go = { "revive" },
 				python = { "flake8" },
 				typescript = { "eslint_d" },
+				javascript = { "eslint_d" },
 				html = { "htmlhint" },
 			}
 

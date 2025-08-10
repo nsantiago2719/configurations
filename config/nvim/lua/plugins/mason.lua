@@ -42,12 +42,6 @@ return {
 					"autopep8",
 				},
 
-				--- Rust
-				{
-					"rust_analyzer",
-				},
-
-				--- Go
 				{
 					"gopls",
 				},
@@ -88,7 +82,7 @@ return {
 				},
 				{ "svelte" },
 				{
-					"eslint" --[[ LS ]],
+					"typescript-language-server", --[[ LS ]]
 				},
 				-- HTML
 				{ "htmlhint" },
