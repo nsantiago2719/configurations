@@ -1,7 +1,6 @@
 return {
 	"hrsh7th/nvim-cmp",
 	dependencies = {
-		"hrsh7th/cmp-buffer",
 		"saadparwaiz1/cmp_luasnip",
 		"onsails/lspkind.nvim",
 	},
@@ -32,7 +31,6 @@ return {
 			},
 			sources = cmp.config.sources({
 				{ name = "luasnip" },
-				{ name = "buffer" },
 				{ name = "path" },
 			}),
 			window = {
