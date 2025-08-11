@@ -1,7 +1,7 @@
 return {
 	cmd = { "gopls" },
-	filetypes = { "go" },
-	root_directory = {
+	filetypes = { "go", "gomod", "gowork", "gotmpl", "gosum" },
+	root_markers = {
 		".git",
 		"go.mod",
 		"go.sum",

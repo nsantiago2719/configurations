@@ -1,7 +1,7 @@
 return {
 	cmd = { "pyright-langserver", "--stdio" },
 	filetypes = { "python" },
-	root_directory = {
+	root_markers = {
 		".git",
 		"requirements.txt",
 	},
