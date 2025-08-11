@@ -6,4 +6,9 @@ return {
 		"go.mod",
 		"go.sum",
 	},
+	settings = {
+		gopls = {
+			usePlaceholders = true,
+		},
+	},
 }
