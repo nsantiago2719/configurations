@@ -6,4 +6,10 @@ if vim.fn.has("nvim-0.11.0") ~= 1 then
 	}, "\n")
 	vim.notify(message, vim.log.levels.ERROR)
 end
+
 require("config")
+
+--  Load lazy for the plugins
+--  Load the LSP after lazy to load dependencies
+require("core/lazy")
+require("core/lsp")
