@@ -9,6 +9,7 @@ return {
 	build = "make install_jsregexp",
 	config = function()
 		local luasnip = require("luasnip")
+		require("luasnip.loaders.from_vscode").lazy_load()
 		luasnip.setup({
 			enable_autosnippets = true,
 			snip_env = {

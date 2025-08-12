@@ -12,7 +12,7 @@ return {
 			},
 		})
 		local lspkind = require("lspkind")
-		vim.opt.completeopt = { "menu", "menuone", "noselect" }
+		vim.opt.completeopt = { "menu", "menuone", "fuzzy", "popup", "noinsert" }
 		require("luasnip.loaders.from_vscode").lazy_load()
 		local luasnip = require("luasnip")
 		local cmp = require("cmp")
