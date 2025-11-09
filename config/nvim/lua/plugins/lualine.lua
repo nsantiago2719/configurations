@@ -2,6 +2,7 @@ return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
+		"supermaven-inc/supermaven-nvim",
 	},
 	event = "VeryLazy",
 	config = function()
@@ -23,6 +24,16 @@ return {
 				},
 				lualine_x = {
 					"filetype",
+					{
+						function()
+							local supermaven = require("supermaven-nvim.api")
+
+							if not supermaven.is_running() then
+								return ""
+							end
+							return "AI"
+						end,
+					},
 				},
 				lualine_z = {
 					{
