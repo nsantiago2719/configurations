@@ -1,5 +1,5 @@
 return {
-	cmd = { "terraform-ls" },
+	cmd = { "terraformls" },
 	filetypes = { "terraform", "tf", "hcl", "terraform-vars" },
 	initializationOptions = {
 		experimentalFeatures = {
