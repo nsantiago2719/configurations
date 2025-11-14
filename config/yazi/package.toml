@@ -1,0 +1,7 @@
+[[plugin.deps]]
+use = "SL-RU/mount"
+rev = "e494101"
+hash = "533c94434955e44fd8ebdb9c140f7c87"
+
+[flavor]
+deps = []
