@@ -149,5 +149,11 @@ export XDG_DATA_DIRS="$XDG_DATA_DIRS:/var/lib/flatpak/exports/share/applications
 ## Rootless docker setup on Arch
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 
+## libadwaita theme preference
+export ADW_COLOR_SCHEME=prefer-dark
+
 ## NodeJS version Manager
 source /usr/share/nvm/init-nvm.sh
+
+## Go binaries  path
+export PATH=$PATH:/$HOME/Desktop/codes/go_projects/bin
