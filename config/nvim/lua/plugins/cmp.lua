@@ -9,10 +9,8 @@ return {
 		require("lspkind").init({
 			symbol_map = {
 				Snippet = " ",
-				Supermaven = "",
 			},
 		})
-		vim.api.nvim_set_hl(0, "CmpItemKindSupermaven", { fg = "#6CC644" })
 		local lspkind = require("lspkind")
 		vim.opt.completeopt = { "menu", "menuone", "fuzzy", "popup", "noinsert" }
 		require("luasnip.loaders.from_vscode").lazy_load()
@@ -33,7 +31,6 @@ return {
 			},
 			sources = cmp.config.sources({
 				{ name = "luasnip" },
-				{ name = "supermaven" },
 				{ name = "path" },
 			}),
 			window = {
