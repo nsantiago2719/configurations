@@ -26,6 +26,8 @@ return {
 		lazy = false,
 		opts = {
 			ensure_installed = {
+				--- Github copilot lsp
+				{ "copilot-language-server" },
 				--- Lua
 				{ "lua_ls" },
 				{ "stylua" },
