@@ -36,6 +36,18 @@ vim.opt.undofile = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
+-- Set custom filetype for helm and gotmpl files
+vim.filetype.add({
+	extension = {
+		gotmpl = "gotmpl",
+	},
+	pattern = {
+		[".*/templates/.*%.tpl"] = "helm",
+		[".*/templates/.*%.ya?ml"] = "helm",
+		["helmfile.*%.ya?ml"] = "helm",
+	},
+})
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 -- vim.diagnostic.config({
