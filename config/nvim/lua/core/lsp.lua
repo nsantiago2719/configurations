@@ -9,7 +9,7 @@ local lsps = {
 	"tailwindcss",
 	"lua_ls",
 	"yamlls",
-	"terraformls",
+	"terraform-ls",
 	"helm-ls",
 	"copilot-language-server",
 }
@@ -26,6 +26,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("auto-lsp-group", {}),
 	callback = function(args)
 		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+		print("LSP started: " .. client.name)
 		local map = function(keys, func, desc, mode)
 			mode = mode or "n"
 			vim.keymap.set(mode, keys, func, { buffer = args.buf, desc = "LSP: " .. desc })

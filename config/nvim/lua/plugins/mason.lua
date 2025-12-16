@@ -59,7 +59,7 @@ return {
 					"tflint",
 				},
 				{
-					"terraformls",
+					"terraform-ls",
 				},
 
 				--- helm
