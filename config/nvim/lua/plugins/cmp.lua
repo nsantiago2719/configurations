@@ -4,6 +4,7 @@ return {
 		"saadparwaiz1/cmp_luasnip",
 		"onsails/lspkind.nvim",
 		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/cmp-path",
 	},
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
