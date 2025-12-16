@@ -3,12 +3,14 @@ return {
 	dependencies = {
 		"saadparwaiz1/cmp_luasnip",
 		"onsails/lspkind.nvim",
+		"hrsh7th/cmp-nvim-lsp",
 	},
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		require("lspkind").init({
 			symbol_map = {
-				Snippet = " ",
+				Snippet = " ",
+				Nvim_lsp = " ",
 			},
 		})
 		local lspkind = require("lspkind")
@@ -30,6 +32,7 @@ return {
 				end,
 			},
 			sources = cmp.config.sources({
+				{ name = "nvim_lsp", keyword_length = 1 },
 				{ name = "luasnip" },
 				{ name = "path" },
 			}),

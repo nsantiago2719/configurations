@@ -41,15 +41,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				return vim.lsp.buf.signature_help()
 			end, "Signature Help")
 		end
-
-		-- Native support for auto completion
-		if client:supports_method("textDocument/completion") then
-			vim.opt.completeopt = { "menu", "menuone", "fuzzy", "popup", "noinsert" }
-			vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = false })
-			map("<C-Space>", function()
-				vim.lsp.completion.get()
-			end, "Completion", "i")
-		end
 	end,
 })
 
