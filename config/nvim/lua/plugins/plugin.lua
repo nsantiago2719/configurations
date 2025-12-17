@@ -6,7 +6,7 @@ return {
 		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
-				flavor = "macchiato",
+				flavor = "mocha",
 				transparent_background = false,
 				auto_integrations = true,
 				dim_inactive = {
@@ -21,7 +21,7 @@ return {
 				end,
 			})
 			-- load the colorscheme here
-			vim.cmd.colorscheme("catppuccin-macchiato")
+			vim.cmd.colorscheme("catppuccin-mocha")
 		end,
 	},
 	{
