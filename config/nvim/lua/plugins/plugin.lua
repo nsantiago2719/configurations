@@ -8,6 +8,7 @@ return {
 			require("catppuccin").setup({
 				flavor = "macchiato",
 				transparent_background = false,
+				auto_integrations = true,
 				dim_inactive = {
 					enabled = true,
 					shade = "dark",
@@ -18,43 +19,6 @@ return {
 						NormalFloat = { bg = colors.base, fg = colors.text },
 					}
 				end,
-				integrations = {
-					treesitter = true,
-					cmp = true,
-					notify = true,
-					noice = true,
-					nvimtree = true,
-					telescope = {
-						enabled = true,
-					},
-					which_key = true,
-					barbar = true,
-					dashboard = true,
-					fidget = true,
-					indent_blankline = {
-						enabled = true,
-					},
-					native_lsp = {
-						enabled = true,
-						virtual_text = {
-							errors = { "italic" },
-							hints = { "italic" },
-							warnings = { "italic" },
-							information = { "italic" },
-							ok = { "italic" },
-						},
-						underlines = {
-							errors = { "underline" },
-							hints = { "underline" },
-							warnings = { "underline" },
-							information = { "underline" },
-							ok = { "underline" },
-						},
-						inlay_hints = {
-							background = true,
-						},
-					},
-				},
 			})
 			-- load the colorscheme here
 			vim.cmd.colorscheme("catppuccin-macchiato")
