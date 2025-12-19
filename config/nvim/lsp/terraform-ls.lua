@@ -1,13 +1,11 @@
 return {
 	cmd = { "terraform-ls", "serve" },
-	filetypes = { "terraform", "tf", "hcl" },
+	filetypes = { "terraform", "tf" },
 	root_markers = { ".terraform/", ".git/" },
-	initializationOptions = {
+	init_options = {
 		experimentalFeatures = {
 			prefillRequiredFields = true,
+			validateOnSave = true,
 		},
-	},
-	settings = {
-		validateOnSave = true,
 	},
 }

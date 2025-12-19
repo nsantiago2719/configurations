@@ -26,7 +26,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("auto-lsp-group", {}),
 	callback = function(args)
 		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-		print("LSP started: " .. client.name)
 		local map = function(keys, func, desc, mode)
 			mode = mode or "n"
 			vim.keymap.set(mode, keys, func, { buffer = args.buf, desc = "LSP: " .. desc })
@@ -42,6 +41,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			map("gH", function()
 				return vim.lsp.buf.signature_help()
 			end, "Signature Help")
+
+			-- Rename all references to the symbol under the cursor
+			map("rR", vim.lsp.buf.rename, "Rename Symbol")
 		end
 	end,
 })
