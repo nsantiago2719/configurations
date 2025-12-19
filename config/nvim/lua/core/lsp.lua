@@ -26,33 +26,34 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("auto-lsp-group", {}),
 	callback = function(args)
 		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+		local bufnr = args.buf
 		local map = function(keys, func, desc, mode)
 			mode = mode or "n"
 			vim.keymap.set(mode, keys, func, { buffer = args.buf, desc = "LSP: " .. desc })
 		end
 
-		-- Go to definition, implementation, references
-		if client:supports_method("textDocumentImplementation") then
+		if client:supports_method("textDocument/definition") then
 			map("gd", require("telescope.builtin").lsp_definitions, "Goto definition")
-			map("gI", require("telescope.builtin").lsp_implementations, "Goto Implementation")
-			map("gR", require("telescope.builtin").lsp_references, "Goto References")
+		end
 
-			-- Show signature help under the cursor
+		if client:supports_method("textDocument/references") then
+			map("gR", require("telescope.builtin").lsp_references, "Goto References")
+		end
+
+		if client:supports_method("textDocument/signatureHelp") then
 			map("gH", function()
 				return vim.lsp.buf.signature_help()
 			end, "Signature Help")
-
-			-- Rename all references to the symbol under the cursor
-			map("rR", vim.lsp.buf.rename, "Rename Symbol")
 		end
-	end,
-})
 
-vim.api.nvim_create_autocmd("LspAttach", {
-	callback = function(args)
-		local bufnr = args.buf
-		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+		if client:supports_method("textDocumentImplementation") then
+			map("gI", require("telescope.builtin").lsp_implementations, "Goto Implementation")
+		end
 
+		-- Rename all references to the symbol under the cursor
+		map("rR", vim.lsp.buf.rename, "Rename Symbol")
+
+		-- Support for copilot-language-server inline completions
 		if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion, bufnr) then
 			vim.lsp.inline_completion.enable(true, { bufnr = bufnr })
 
@@ -73,6 +74,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
 vim.lsp.config("*", {
 	capabilities = capabilities,
 })
