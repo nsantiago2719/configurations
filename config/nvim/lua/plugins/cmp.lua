@@ -21,7 +21,7 @@ return {
 		local luasnip = require("luasnip")
 		local cmp = require("cmp")
 		local has_words_before = function()
-			if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+			if vim.api.nvim_get_option_value(0, "buftype") == "prompt" then
 				return false
 			end
 			local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -34,8 +34,8 @@ return {
 				end,
 			},
 			sources = cmp.config.sources({
-				{ name = "nvim_lsp", keyword_length = 2 },
-				{ name = "nvim_lsp_signature_help", keyword_length = 2 },
+				{ name = "nvim_lsp", keyword_length = 4 },
+				{ name = "nvim_lsp_signature_help", keyword_length = 4 },
 				{ name = "luasnip" },
 				{ name = "path" },
 			}),
@@ -47,6 +47,8 @@ return {
 				}),
 				completion = cmp.config.window.bordered({
 					winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+					col_offset = 1,
+					side_padding = 0,
 				}),
 			},
 			formatting = {
