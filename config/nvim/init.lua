@@ -13,3 +13,6 @@ require("config")
 --  Load the LSP after lazy to load dependencies
 require("core/lazy")
 require("core/lsp")
+
+-- setup colorscheme
+vim.cmd.colorscheme("nordfox")
