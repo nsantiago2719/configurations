@@ -2,22 +2,23 @@ function CustomFoldText()
 	local line = vim.fn.getline(vim.v.foldstart)
 	local line_count = vim.v.foldend - vim.v.foldstart + 1
 
-	-- 1. Handle Tabs: Expand them to spaces based on your 'tabstop'
-	-- This prevents the "shifting" or conversion to single spaces.
-	local tab_width = vim.opt.tabstop:get()
+	-- 1. Get tabstop value correctly
+	local tab_width = vim.bo.tabstop
 	local spacing = string.rep(" ", tab_width)
+
+	-- 2. Expand tabs to spaces so the alignment doesn't break
 	local formatted_line = line:gsub("\t", spacing)
 
-	-- 2. Clean the line (remove trailing {)
+	-- 3. Remove trailing { and whitespace
 	local cleaned_start = formatted_line:gsub("%s*{%s*$", "")
 
-	-- 3. Return the dynamic string
-	return cleaned_start .. " 󰅂  { ... } (" .. line_count .. " lines)"
+	-- 4. Return the formatted string
+	return cleaned_start .. "  { ... } (" .. line_count .. " lines)"
 end
 
 return {
 	"nvim-treesitter/nvim-treesitter",
-	-- use the latest stable release
+	-- use the latest release
 	branch = "main",
 	-- lazy not supported
 	lazy = false,
