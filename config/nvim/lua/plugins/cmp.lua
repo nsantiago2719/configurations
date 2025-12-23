@@ -5,7 +5,6 @@ return {
 		"onsails/lspkind.nvim",
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-path",
-		"hrsh7th/cmp-nvim-lsp-signature-help",
 	},
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
@@ -35,7 +34,6 @@ return {
 			},
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp", keyword_length = 4 },
-				{ name = "nvim_lsp_signature_help", keyword_length = 4 },
 				{ name = "luasnip" },
 				{ name = "path" },
 			}),
@@ -59,7 +57,7 @@ return {
 						menu = 50,
 						abbr = 50,
 					},
-					elipsis_char = "...",
+					ellipsis_char = "...",
 					before = function(_, vim_item)
 						return vim_item
 					end,
@@ -81,7 +79,7 @@ return {
 				end),
 
 				["<Tab>"] = cmp.mapping(function(fallback)
-					if cmp.visible() and has_words_before then
+					if cmp.visible() and has_words_before() then
 						cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
 					elseif cmp.visible() then
 						cmp.select_next_item()
