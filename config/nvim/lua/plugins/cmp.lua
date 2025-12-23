@@ -20,7 +20,7 @@ return {
 		local luasnip = require("luasnip")
 		local cmp = require("cmp")
 		local has_words_before = function()
-			if vim.api.nvim_get_option_value(0, "buftype") == "prompt" then
+			if vim.api.nvim_get_option_value("buftype", { buf = 0 }) == "prompt" then
 				return false
 			end
 			local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -33,7 +33,7 @@ return {
 				end,
 			},
 			sources = cmp.config.sources({
-				{ name = "nvim_lsp", keyword_length = 4 },
+				{ name = "nvim_lsp", keyword_length = 3 },
 				{ name = "luasnip" },
 				{ name = "path" },
 			}),
