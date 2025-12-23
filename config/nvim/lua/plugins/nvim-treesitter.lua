@@ -2,18 +2,33 @@ function CustomFoldText()
 	local line = vim.fn.getline(vim.v.foldstart)
 	local line_count = vim.v.foldend - vim.v.foldstart + 1
 
-	-- 1. Get tabstop value correctly
+	-- 1. Extract Indentation
+	local indent_part = line:match("^%s*") or ""
+	local content_part = line:sub(#indent_part + 1)
+
+	-- 2. Expand leading tabs to spaces for visual alignment
 	local tab_width = vim.bo.tabstop
-	local spacing = string.rep(" ", tab_width)
+	local expanded_indent = indent_part:gsub("\t", string.rep(" ", tab_width))
 
-	-- 2. Expand tabs to spaces so the alignment doesn't break
-	local formatted_line = line:gsub("\t", spacing)
+	-- 3. Aggressive Clean:
+	-- First, remove everything from the first '{' onwards
+	local cleaned = content_part:gsub("{.*$", "")
+	-- Second, trim any trailing whitespace left over
+	cleaned = cleaned:gsub("%s*$", "")
+	-- Third, if there's a stray '(' at the very end (like in 'import ('), trim that too
+	cleaned = cleaned:gsub("%s*%(%s*$", "")
 
-	-- 3. Remove trailing { and whitespace
-	local cleaned_start = formatted_line:gsub("%s*{%s*$", "")
+	-- 4. Handle Edge Cases (e.g., if the line was ONLY a brace)
+	if cleaned == "" then
+		-- If it's an empty looking line that had a brace, just show the brace
+		if content_part:find("{") then
+			return expanded_indent .. "{ ... } (" .. line_count .. " lines)"
+		end
+		return expanded_indent .. "... (" .. line_count .. " lines)"
+	end
 
-	-- 4. Return the formatted string
-	return cleaned_start .. "  { ... } (" .. line_count .. " lines)"
+	-- 5. Return: Indent + Cleaned Text + One single version of our icon
+	return expanded_indent .. cleaned .. "{ ... } (" .. line_count .. " lines)"
 end
 
 return {
