@@ -24,10 +24,10 @@ vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
 -- Opencode mappings
-vim.keymap.set({ "n", "x" }, "<C-x>", function()
+vim.keymap.set("n", "<C-x>", function()
 	require("opencode").select()
 end, { desc = "Execute opencode action…" })
-vim.keymap.set({ "n", "t" }, "<leader>to", function()
+vim.keymap.set("n", "<leader>to", function()
 	require("opencode").toggle()
 end, { desc = "Toggle opencode" })
 
