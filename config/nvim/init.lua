@@ -10,9 +10,10 @@ end
 require("config")
 
 --  Load lazy for the plugins
---  Load the LSP after lazy to load dependencies
+--  Load other config after lazy to load dependencies
 require("core/lazy")
 require("core/lsp")
+require("core/treesitter")
 
 -- setup colorscheme
 vim.cmd.colorscheme("nordfox")

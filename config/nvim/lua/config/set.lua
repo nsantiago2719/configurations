@@ -50,8 +50,7 @@ vim.filetype.add({
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
--- vim.diagnostic.config({
--- 	virtual_lines = {
--- 		current_line = true,
--- 	},
--- })
+vim.diagnostic.config({
+	virtual_text = false,
+	virtual_lines = false,
+})
