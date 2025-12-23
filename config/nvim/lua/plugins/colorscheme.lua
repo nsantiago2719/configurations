@@ -25,10 +25,20 @@ return {
 	-- 		vim.cmd.colorscheme("catppuccin-mocha")
 	-- 	end,
 	-- },
+	--
+	-- nightfox theme which contains "nordfox" variant which is the
+	-- current colorscheme
 	{
 		"EdenEast/nightfox.nvim",
 		opts = {
-			dim_inactive = true,
+			options = {
+				dim_inactive = true,
+				styles = {
+					comments = "italic",
+					keywords = "bold,italic",
+					functions = "bold",
+				},
+			},
 		},
 	},
 }
