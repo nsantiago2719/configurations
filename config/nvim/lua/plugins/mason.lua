@@ -23,7 +23,7 @@ return {
 	},
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		lazy = false,
+		cmd = { "MasonToolsInstall", "MasonToolsUpdate", "MasonToolsUninstall" },
 		opts = {
 			ensure_installed = {
 				--- Github copilot lsp

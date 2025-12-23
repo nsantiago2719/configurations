@@ -30,6 +30,8 @@ return {
 	-- current colorscheme
 	{
 		"EdenEast/nightfox.nvim",
+		lazy = false,
+		priority = 1000,
 		opts = {
 			options = {
 				dim_inactive = true,

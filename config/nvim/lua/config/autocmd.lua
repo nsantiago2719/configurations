@@ -10,3 +10,18 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		end
 	end,
 })
+
+-- Remove trailing whitespaces and Windows line endings (^M) on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+	group = augroup,
+	callback = function()
+		-- Save cursor position to restore later
+		local save_cursor = vim.fn.getpos(".")
+		-- Remove Windows line endings (^M / carriage return)
+		vim.cmd([[keeppatterns %s/\r$//e]])
+		-- Remove trailing whitespace (keeppatterns to not affect search history)
+		vim.cmd([[keeppatterns %s/\s\+$//e]])
+		-- Restore cursor position
+		vim.fn.setpos(".", save_cursor)
+	end,
+})

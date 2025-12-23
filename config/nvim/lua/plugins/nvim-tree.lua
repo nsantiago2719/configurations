@@ -1,9 +1,10 @@
 return {
 	"nvim-tree/nvim-tree.lua",
-	lazy = false,
+	lazy = true,
 	keys = {
 		{ "<leader>ee", "<cmd>NvimTreeToggle<CR>", desc = "Toggle NvimTree" },
 	},
+	cmd = { "NvimTreeToggle", "NvimTreeFocus", "NvimTreeFindFile" },
 	opts = function()
 		vim.g.nvim_tree_disable_default_keybindings = 1
 		local function custom_keybinds(bufnr)

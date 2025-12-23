@@ -1,11 +1,16 @@
 return {
 	"akinsho/toggleterm.nvim",
-	lazy = false,
+	cmd = { "ToggleTerm" },
 	version = "*",
 	opts = {
 		autochdir = true,
 		widht = 30,
 		height = 30,
+	},
+	keys = {
+		{ "<leader>tt", desc = "Terminal" },
+		{ "<leader>ts", desc = "Terminal VSplit" },
+		{ "<leader>tg", desc = "LazyGit" },
 	},
 	config = function(_, opts)
 		require("toggleterm").setup(opts)

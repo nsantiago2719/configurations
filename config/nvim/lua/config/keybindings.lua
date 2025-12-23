@@ -13,11 +13,11 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 -- Tab mappings
 -- won't close if there is only one tab
-vim.keymap.set("n", "C", "<cmd>tabc<CR>", { desc = "Close Tab" })
+vim.keymap.set("n", "<leader>bc", "<cmd>tabc<CR>", { desc = "Close Tab" })
 -- open new tab after the last one
-vim.keymap.set("n", "T", "<cmd>$tabnew<CR>", { desc = "New Tab" })
-vim.keymap.set("n", "I", "<cmd>tabn<CR>", { desc = "Next Tab" })
-vim.keymap.set("n", "U", "<cmd>tabp<CR>", { desc = "Previous Tab" })
+vim.keymap.set("n", "<leader>bn", "<cmd>$tabnew<CR>", { desc = "New Tab" })
+vim.keymap.set("n", "<leader>bh", "<cmd>tabn<CR>", { desc = "Next Tab" })
+vim.keymap.set("n", "<leader>bl", "<cmd>tabp<CR>", { desc = "Previous Tab" })
 
 -- Better indenting in visual mode
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
