@@ -4,7 +4,7 @@ return {
 		"lewis6991/gitsigns.nvim",
 		"nvim-tree/nvim-web-devicons",
 	},
-	event = "VeryLazy",
+	lazy = false,
 	version = "^4.9.1",
 	init = function()
 		vim.g.barbar_auto_setup = false

@@ -46,7 +46,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			end, "Signature Help")
 		end
 
-		if client:supports_method("textDocumentImplementation") then
+		if client:supports_method("textDocument/Implementation") then
 			map("gI", require("telescope.builtin").lsp_implementations, "Goto Implementation")
 		end
 
