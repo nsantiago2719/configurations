@@ -102,7 +102,31 @@ return {
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		branch = "main",
 		config = function()
-			require("nvim-treesitter-textobjects").setup({})
+			local map = function(lhs, query_type, desc)
+				return vim.keymap.set({ "x", "o" }, lhs, function()
+					require("nvim-treesitter-textobjects.select").select_textobject(query_type, "textobjects")
+				end, { desc = "" .. desc })
+			end
+			require("nvim-treesitter-textobjects").setup({
+				select = {
+					lookahead = true,
+					selection_modes = {
+						["@parameter.outer"] = "v",
+						["@function.outer"] = "V",
+						["@class.outer"] = "<c-v>",
+					},
+				},
+			})
+			map("af", "@function.outer", "Select outer function")
+		end,
+	},
+	{
+		"Wansmer/treesj",
+		keys = { "<space>m", "<space>j", "<space>s" },
+		dependencies = { "nvim-treesitter/nvim-treesitter" }, -- if you install parsers with `nvim-treesitter`
+		config = function()
+			require("treesj").setup({--[[ your config ]]
+			})
 		end,
 	},
 }
