@@ -32,68 +32,77 @@ function CustomFoldText()
 end
 
 return {
-	"nvim-treesitter/nvim-treesitter",
-	-- use the latest release
-	branch = "main",
-	-- lazy not supported
-	lazy = false,
-	build = ":TSUpdate",
-	cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-	config = function(_, opts)
-		local tree_sitter = require("nvim-treesitter")
-		tree_sitter.setup(opts)
+	{
+		"nvim-treesitter/nvim-treesitter",
+		-- use the latest release
+		branch = "main",
+		-- lazy not supported
+		lazy = false,
+		build = ":TSUpdate",
+		cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+		config = function(_, opts)
+			local tree_sitter = require("nvim-treesitter")
+			tree_sitter.setup(opts)
 
-		local ensure_installed = {
-			"helm",
-			"bash",
-			"html",
-			"json",
-			"css",
-			"lua",
-			"luadoc",
-			"go",
-			"gotmpl",
-			"rust",
-			"markdown",
-			"markdown_inline",
-			"python",
-			"regex",
-			"toml",
-			"vim",
-			"vimdoc",
-			"yaml",
-			"svelte",
-			"terraform",
-			"javascript",
-			"typescript",
-		}
-		tree_sitter.install(ensure_installed)
+			local ensure_installed = {
+				"helm",
+				"bash",
+				"html",
+				"json",
+				"css",
+				"lua",
+				"luadoc",
+				"go",
+				"gotmpl",
+				"rust",
+				"markdown",
+				"markdown_inline",
+				"python",
+				"regex",
+				"toml",
+				"vim",
+				"vimdoc",
+				"yaml",
+				"svelte",
+				"terraform",
+				"javascript",
+				"typescript",
+			}
+			tree_sitter.install(ensure_installed)
 
-		-- Ensure the dots from 'fillchars' don't clutter the end of the line
-		vim.opt.fillchars:append({ fold = " " })
+			-- Ensure the dots from 'fillchars' don't clutter the end of the line
+			vim.opt.fillchars:append({ fold = " " })
 
-		vim.api.nvim_create_autocmd("FileType", {
-			callback = function(args)
-				if vim.list_contains(tree_sitter.get_installed(), vim.treesitter.language.get_lang(args.match)) then
-					-- syntax highlighting, provided by Neovim
-					vim.treesitter.start()
-					-- folds, provided by Neovim
-					vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
-					vim.wo[0][0].foldmethod = "expr"
+			vim.api.nvim_create_autocmd("FileType", {
+				callback = function(args)
+					if vim.list_contains(tree_sitter.get_installed(), vim.treesitter.language.get_lang(args.match)) then
+						-- syntax highlighting, provided by Neovim
+						vim.treesitter.start()
+						-- folds, provided by Neovim
+						vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+						vim.wo[0][0].foldmethod = "expr"
 
-					-- This is experimental in Neovim and may not work as expected
-					-- indentation, provided by nvim-treesitter
-					vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+						-- This is experimental in Neovim and may not work as expected
+						-- indentation, provided by nvim-treesitter
+						vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
-					vim.opt.foldcolumn = "0"
-					vim.opt.foldtext = ""
-					vim.opt.foldlevel = 99
-					vim.opt.foldlevelstart = 1
-					vim.opt.foldnestmax = 4
-					-- Apply the function
-					vim.opt.foldtext = "v:lua.CustomFoldText()"
-				end
-			end,
-		})
-	end,
+						vim.opt.foldcolumn = "0"
+						vim.opt.foldtext = ""
+						vim.opt.foldlevel = 99
+						vim.opt.foldlevelstart = 1
+						vim.opt.foldnestmax = 4
+						-- Apply the function
+						vim.opt.foldtext = "v:lua.CustomFoldText()"
+					end
+				end,
+			})
+		end,
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		branch = "main",
+		config = function()
+			require("nvim-treesitter-textobjects").setup({})
+		end,
+	},
 }
