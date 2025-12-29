@@ -9,6 +9,7 @@ return {
 		show_borders = true,
 		show_signs = true,
 		scope = "line",
+		toggle_event = { "InsertEnter" },
 		format = function(diagnostic)
 			return "[Diagnostics] " .. diagnostic.message
 		end,
