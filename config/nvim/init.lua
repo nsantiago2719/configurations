@@ -8,10 +8,10 @@ if vim.fn.has("nvim-0.12.0") ~= 1 then
 end
 
 local config_files = { "config", "core/lazy", "core/lsp" }
-for _, file in ipairs(config_files) do
-	local ok, err = pcall(require, file)
+for _, config in ipairs(config_files) do
+	local ok, err = pcall(require, config)
 	if not ok then
-		vim.notify("Failed to load " .. file .. ": " .. err, vim.log.levels.ERROR)
+		vim.notify("Failed to load " .. config .. ": " .. err, vim.log.levels.ERROR)
 	end
 end
 
