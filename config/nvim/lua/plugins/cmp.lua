@@ -36,7 +36,7 @@ return {
 				{ name = "nvim_lsp", keyword_length = 3 },
 				{ name = "luasnip" },
 				{ name = "path" },
-				{ name = "lazydev", group_index = 2 },
+				{ name = "lazydev", group_index = 0 },
 			}),
 			window = {
 				documentation = cmp.config.window.bordered({
