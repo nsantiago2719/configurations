@@ -102,9 +102,9 @@ return {
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		branch = "main",
 		config = function()
-			local map = function(lhs, query_type, desc)
+			local map = function(lhs, query, desc)
 				return vim.keymap.set({ "x", "o" }, lhs, function()
-					require("nvim-treesitter-textobjects.select").select_textobject(query_type, "textobjects")
+					require("nvim-treesitter-textobjects.select").select_textobject(query.q_string, query.q_group)
 				end, { desc = "" .. desc })
 			end
 			require("nvim-treesitter-textobjects").setup({
@@ -116,8 +116,13 @@ return {
 						["@class.outer"] = "<c-v>",
 					},
 				},
+				include_surrounding_whitespace = true,
 			})
-			map("af", "@function.outer", "Select outer function")
+			map("af", { q_string = "@function.outer", q_group = "textobjects" }, "Select outer function")
+			map("if", { q_string = "@function.inner", q_group = "textobjects" }, "Select inner function")
+			map("ac", { q_string = "@class.outer", q_group = "textobjects" }, "Select outer class")
+			map("ic", { q_string = "@class.inner", q_group = "textobjects" }, "Select inner class")
+			map("as", { q_string = "@local.scope", q_group = "locals" }, "Select around local scope")
 		end,
 	},
 	{
