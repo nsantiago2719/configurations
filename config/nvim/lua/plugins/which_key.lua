@@ -17,8 +17,6 @@ return {
 			{ "<leader>Y", hidden = true },
 			{ "<leader>y", hidden = true },
 			{ "<leader>bx", hidden = true },
-			{ "<leader>j", hidden = true },
-			{ "<leader>m", hidden = true },
 			{ "<leader>s", hidden = true },
 		})
 	end,
