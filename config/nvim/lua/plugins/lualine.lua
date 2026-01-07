@@ -21,16 +21,8 @@ return {
 						symbols = { error = " ", warn = " ", info = " ", hint = " " },
 					},
 					{
-						"macro",
-						fmt = function()
-							local reg = vim.fn.reg_recording()
-							if reg ~= "" then
-								return "Recording @" .. reg
-							end
-							return nil
-						end,
-						color = { fg = "#ff9e64" },
-						draw_empty = false,
+						require("noice").api.statusline.mode.get,
+						cond = require("noice").api.statusline.mode.has,
 					},
 				},
 				lualine_x = {
