@@ -118,7 +118,8 @@ export PATH="$PATH:$HOME/.local/bin:/opt/bins:/usr/local/go/bin:/usr/bin"
 alias icat="kitten icat"
 alias kd="kitten diff"
 
-[[ -s "/home/nsntg/.gvm/scripts/gvm" ]] && source "/home/nsntg/.gvm/scripts/gvm"
+# gvm source for go
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
 eval "$(rbenv init - --no-rehash zsh)"
 
@@ -143,9 +144,6 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-## Add flatpak apps in wofi menu
-export XDG_DATA_DIRS="$XDG_DATA_DIRS:/var/lib/flatpak/exports/share/applications"
-
 ## Rootless docker setup on Arch
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 
@@ -157,3 +155,9 @@ source /usr/share/nvm/init-nvm.sh
 
 ## Go binaries  path
 export PATH=$PATH:/$HOME/Desktop/codes/go_projects/bin
+
+# Turso
+export PATH="$PATH:$HOME/.turso"
+
+# opencode
+export PATH=$HOME/.opencode/bin:$PATH
