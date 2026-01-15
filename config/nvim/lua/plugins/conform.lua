@@ -11,7 +11,7 @@ return {
 				yaml = { "yamlfmt" },
 				json = { "jq" },
 				python = { "autopep8" },
-				go = { "gofumpt" },
+				go = { "goimports" },
 				html = { "prettierd" },
 				javascript = { "prettierd" },
 				typescript = { "prettierd" },

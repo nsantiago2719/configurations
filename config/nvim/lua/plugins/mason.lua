@@ -23,7 +23,7 @@ return {
 	},
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-    lazy = false,
+		lazy = false,
 		opts = {
 			ensure_installed = {
 				--- Github copilot lsp
@@ -51,7 +51,7 @@ return {
 					"revive",
 				},
 				{
-					"gofumpt",
+					"goimports",
 				},
 
 				--- Terraform
