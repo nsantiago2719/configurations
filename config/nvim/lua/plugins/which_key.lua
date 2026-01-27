@@ -12,6 +12,7 @@ return {
 			{ "<leader>c", icon = " ", group = "Cloak" },
 			{ "<leader>t", icon = " ", group = "Terminal" },
 			{ "<leader>u", icon = " ", group = "Undo tree" },
+			{ "<leader>tf", icon = " ", group = "Terraform" },
 
 			-- ignore these keys
 			{ "<leader>Y", hidden = true },
