@@ -13,6 +13,7 @@ return {
 			{ "<leader>t", icon = " ", group = "Terminal" },
 			{ "<leader>u", icon = " ", group = "Undo tree" },
 			{ "<leader>tf", icon = " ", group = "Terraform" },
+			{ "<leader>g", icon = " ", group = "Git Commands" },
 
 			-- ignore these keys
 			{ "<leader>Y", hidden = true },
