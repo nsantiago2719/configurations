@@ -118,11 +118,6 @@ export PATH="$PATH:$HOME/.local/bin:/opt/bins:/usr/local/go/bin:/usr/bin"
 alias icat="kitten icat"
 alias kd="kitten diff"
 
-# gvm source for go
-[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
-
-eval "$(rbenv init - --no-rehash zsh)"
-
 ## starship
 eval "$(starship init zsh)"
 eval "$(starship completions zsh)"
@@ -150,8 +145,6 @@ export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 ## libadwaita theme preference
 export ADW_COLOR_SCHEME=prefer-dark
 
-## NodeJS version Manager
-source /usr/share/nvm/init-nvm.sh
 
 ## Go binaries  path
 export PATH=$PATH:/$HOME/Desktop/codes/go_projects/bin
@@ -161,3 +154,16 @@ export PATH="$PATH:$HOME/.turso"
 
 # opencode
 export PATH=$HOME/.opencode/bin:$PATH
+
+#########
+# asdf version manager
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
+# append completions to fpath
+fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit
+export GOPATH=$(asdf where golang)/packages
+export GOROOT=$(asdf where golang)/go
+export PATH="${PATH}:$(go env GOPATH)/bin"
+#########
