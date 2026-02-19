@@ -114,6 +114,8 @@ return {
 						["@parameter.outer"] = "v",
 						["@function.outer"] = "V",
 						["@class.outer"] = "<c-v>",
+						["@tag.outer"] = "at",
+						["@tag.outer"] = "it",
 					},
 				},
 				include_surrounding_whitespace = true,
