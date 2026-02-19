@@ -10,6 +10,7 @@ return {
 	keys = {
 		{ "<leader>tt", desc = "Terminal" },
 		{ "<leader>ts", desc = "Terminal VSplit" },
+		{ "<leader>tg", desc = "Lazygit" },
 		{ "<leader>tf", icon = " ", desc = "Terraform" },
 		{ "<leader>tfi", desc = "init" },
 		{ "<leader>tfp", desc = "plan" },
