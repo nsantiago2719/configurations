@@ -49,6 +49,8 @@
   "network": {
     "format": "{ipaddr}",
   },
+  // This is a custom module that uses the ScrollMPRIS script to display the current song title. It also allows you to play/pause the music by clicking on it, and it has a minimum length to prevent it from disappearing when no song is playing.
+  // https://github.com/BEST8OY/ScrollMPRIS
   "custom/ScrollMPRIS": {
       "return-type": "json",
       "exec": "ScrollMPRIS --format '{title}'",
