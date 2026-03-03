@@ -12,8 +12,9 @@ window#waybar {
 }
 
 .modules-left,
-.modules-right,
-.modules-center {
+.modules-center,
+#right,
+#hardware {
   border-radius: 6px;
   background: #181926;
 }
@@ -69,27 +70,29 @@ tooltip * {
 
 #pulseaudio {
   color: #a6da95;
-  padding-right: 0px;
-  padding-left: 8px;
+  padding-right: 8px;
 }
 #pulseaudio.muted {
   color: #ed8796;
-  padding: 0px;
-  padding-right: 0px;
-  padding-left: 8px;
+  padding-right: 8px;
 }
 
-/* doing this cause i cant figure out 
- * how can i target the not-power class 
+/* doing this cause i cant figure out
+ * how can i target the not-power class
  * for the drawer items */
-#custom-lock, 
+#custom-lock,
 #custom-suspend,
 #custom-reboot {
   padding-right: 8px;
   color: #f5bde6;
 }
 #power {
-  padding-right: 8px;
+  padding: 0px 8px;
   color: #f5bde6;
   font-size: 14px;
+}
+
+#hardware {
+  color: #a5adcb;
+  padding: 0px 8px;
 }

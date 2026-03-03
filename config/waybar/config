@@ -1,6 +1,6 @@
 {
   "layer": "top",
-  "position": "bottom",
+  "position": "top",
   "spacing": 8,
   "margin": 10,
   "modules-left": [
@@ -11,14 +11,42 @@
     "clock#bc"
   ],
   "modules-right": [
-    "pulseaudio",
-    "custom/internet",
-    "tray",
-    "privacy",
-    "group/power",
+    "group/hardware",
+    "group/right"
   ],
+
+  "group/hardware": {
+    "orientation": "inherit",
+    "modules": [
+      "cpu",
+      "memory",
+      "network"
+    ]
+  },
+  "group/right": {
+    "orientation": "inherit",
+    "modules": [
+      "pulseaudio",
+      "tray",
+      "privacy",
+      "group/power"
+    ]
+  },
   "custom/sep": {
     "format": "|"
+  },
+
+  "cpu": {
+    "format": "CPU: {usage}%  ",
+    "format-alt": "CPU: {usage}% ({freq}GHz)  "
+  },
+  "memory": {
+    "format": "RAM: {used}/{total}GB  ",
+    "format-alt": "RAM: {used}/{total}GB ({used_percent}%)"
+  },
+  "network": {
+    "format": "{ipaddr}",
+    "format-alt": "{ipaddr}"
   },
  "hyprland/workspaces": {
     "format": "<sub>{id}</sub>",
@@ -79,15 +107,10 @@
     "on-scroll-down": "shift_up",
     },
   },
-  "custom/internet": {
-    "format": "{}",
-    "exec": "internet",
-    "interval": 5
-  },
   "tray": {
     "icon-size": 16,
     "show-passive-items": "true",
-    "spacing": 8 
+    "spacing": 8
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
@@ -132,7 +155,7 @@
         "transition-left-to-right": false,
     },
     "modules": [
-        "custom/power", 
+        "custom/power",
         "custom/suspend",
         "custom/lock",
         "custom/reboot",
