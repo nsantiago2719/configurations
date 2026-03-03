@@ -4,7 +4,8 @@
   "spacing": 8,
   "margin": 10,
   "modules-left": [
-    "hyprland/workspaces"
+    "hyprland/workspaces",
+    "custom/ScrollMPRIS"
   ],
   "modules-center": [
     "clock",
@@ -47,6 +48,13 @@
   },
   "network": {
     "format": "{ipaddr}",
+  },
+  "custom/ScrollMPRIS": {
+      "return-type": "json",
+      "exec": "ScrollMPRIS --format '{title}'",
+      "escape": true,
+      "on-click": "playerctl play-pause",
+      "min-length": 41,
   },
  "hyprland/workspaces": {
     "format": "<sub>{id}</sub>",

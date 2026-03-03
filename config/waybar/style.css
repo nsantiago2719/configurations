@@ -11,11 +11,12 @@ window#waybar {
   background: none;
 }
 
-.modules-left,
 .modules-center,
+#workspaces,
+#custom-ScrollMPRIS,
 #right,
 #hardware {
-  border-radius: 6px;
+  border-radius: 20px;
   background: #181926;
 }
 
@@ -35,7 +36,7 @@ tooltip * {
 #custom-sep {
   color: #494d64;
   margin: 0px 0px;
-  padding: 0px;
+  padding: 0px 3px;
 }
 #workspaces,
 #pulseaudio,
@@ -45,9 +46,6 @@ tooltip * {
 
 #tray {
   padding: 0px;
-}
-#workspaces {
-  border-radius: 4px;
 }
 #workspaces button {
   color: #5b6078;
@@ -93,6 +91,11 @@ tooltip * {
 }
 
 #hardware {
+  color: #a5adcb;
+  padding: 0px 8px;
+}
+
+#custom-ScrollMPRIS {
   color: #a5adcb;
   padding: 0px 8px;
 }
