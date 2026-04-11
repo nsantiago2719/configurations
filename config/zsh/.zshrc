@@ -165,3 +165,5 @@ fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
 autoload -Uz compinit && compinit
 . ~/.asdf/plugins/golang/set-env.zsh
 #########
+
+eval "$(atuin init zsh)"
