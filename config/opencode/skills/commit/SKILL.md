@@ -10,6 +10,7 @@ compatibility: opencode
 - Generate a commit message based on a template.
 - Ensure the commit message follows a consistent format.
 - Provide suggestions for improving the commit message if necessary.
+- If there are no staged changes, prompt the user to stage changes before creating a commit message or ask the user if they want to stage all changes and create a commit message.
 
 ## When to use me
 
