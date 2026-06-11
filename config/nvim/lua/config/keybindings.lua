@@ -28,7 +28,10 @@ vim.keymap.set("n", "<C-x>", function()
 	require("opencode").select()
 end, { desc = "Execute opencode action…" })
 vim.keymap.set("n", "<leader>to", function()
-	require("opencode").toggle()
+	Snacks.terminal.toggle("opencode --port", {
+		cwd = vim.uv.cwd(),
+		win = { position = "bottom", height = 0.4 },
+	})
 end, { desc = "Toggle opencode" })
 
 vim.keymap.set({ "n", "x" }, "go", function()

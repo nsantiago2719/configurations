@@ -7,8 +7,11 @@ return {
 		{
 			"folke/snacks.nvim",
 			opts = {
-				input = {},
+				input = {
+					enabled = true,
+				},
 				picker = {
+					enabled = true,
 					actions = {
 						opencode_send = function(...)
 							return require("opencode").snacks_picker_send(...)
@@ -26,6 +29,7 @@ return {
 			},
 		},
 	},
+	opts = {},
 	config = function()
 		-- Required for `opts.events.reload`.
 		vim.o.autoread = true
