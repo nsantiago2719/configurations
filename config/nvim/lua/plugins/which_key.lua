@@ -14,7 +14,7 @@ return {
 			{ "<leader>u", icon = " ", group = "Undo tree" },
 			{ "<leader>tf", icon = " ", group = "Terraform" },
 			{ "<leader>g", icon = " ", group = "Git Commands" },
-
+			{ "<leader>o", icon = " ", group = "Opencode Commands", mode = { "v" } },
 			-- ignore these keys
 			{ "<leader>Y", hidden = true },
 			{ "<leader>y", hidden = true },
